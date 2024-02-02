@@ -1,0 +1,123 @@
+---
+title: "01 -- Lotka-Volterra competition model and the modern coexistence theory"
+author: "Christopher klausmeier; Liang Xu"
+date: "2024-01-29"
+categories: [Lectures]
+filters:
+  - shinylive
+---
+
+```{r setup, include=FALSE}
+library(plotly)
+library(magrittr)
+```
+
+# Two-species Lotka-Volterra competition model
+
+The model is given by
+
+$$
+\begin{aligned}
+\frac{dN_1}{dt} &= r_1 \left(1 - \alpha_{11} N_1 - \alpha_{12} N_2\right) N_1 \\
+\frac{dN_2}{dt} &= r_2 \left(1 - \alpha_{21} N_1 - \alpha_{22} N_2\right) N_2
+\end{aligned}
+$$
+
+where $N_1$ and $N_2$ are the population sizes of species 1 and 2, respectively, $r_1$ and $r_2$ are the intrinsic growth rates, and $\alpha_{ij}$s are the competition coefficients.
+
+```{r}
+# Define the model
+Sim_lotka_volterra <- function(tt, alpha11, alpha12, alpha21, alpha22, r1, r2, N10, N20) {
+  N1 <- c(N10)
+  N2 <- c(N20)
+  for(ti in 1:tt){
+    dN1 <- r1 * (1 - alpha11 * N1[ti] - alpha12 * N2[ti]) * N1[ti]
+    dN2 <- r2 * (1 - alpha21 * N1[ti] - alpha22 * N2[ti]) * N2[ti]
+    N1 <- c(N1, N1[ti] + dN1)
+    N2 <- c(N2, N2[ti] + dN2)
+  }
+  return(data.frame(N1 = N1, N2 = N2))
+
+}
+```
+
+# The phase-plane analysis
+
+The zero-net growth isoclines are given by:
+
+$$
+\begin{aligned}
+\frac{dN_1}{dt} &= 0 \Rightarrow N_1 = \frac{1}{\alpha_{11}} \left(1 - \alpha_{12} N_2\right) \\
+\frac{dN_2}{dt} &= 0 \Rightarrow N_2 = \frac{1}{\alpha_{22}} \left(1 - \alpha_{21} N_1\right)
+\end{aligned}
+$$
+
+Plot the isoclines in the phase plane.
+
+The equilibrium points are the intersection of the isoclines.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 600
+#| viewerWidth: 1000
+library(shiny)
+library(bslib)
+library(plotly)
+
+# Define UI for app that draws a histogram ----
+ui <- fluidPage(
+  headerPanel('Two species isoclines'),
+  sidebarPanel(
+    numericInput('alpha11', 'Alpha 11', 1.5, min = 1, max = 10),
+    numericInput('alpha12', 'Alpha 12', 0.8, min = 1, max = 10),
+    numericInput('alpha21', 'Alpha 21', 0.9, min = 1, max = 10),
+    numericInput('alpha22', 'Alpha 22', 1.1, min = 1, max = 10),
+    width = 2
+  ),
+  mainPanel(
+    plotlyOutput("plot", width=800)
+  )
+
+)
+
+server <- function(input, output, session) {
+    N1 <- seq(0, 10, 0.01)
+    N2_1 <-reactive({
+      (1 - input$alpha11 * N1) / input$alpha12 
+    })
+    
+    N2_2 <- reactive({
+      (1 - input$alpha21 * N1) / input$alpha22
+    })
+    
+  output$plot <- renderPlotly({
+    Ns <- data.frame(N1 = N1, N2_1 = N2_1(), N2_2 = N2_2())
+    pos_Ns <- Ns[Ns$N1 >= 0 & Ns$N2_1 >= 0 & Ns$N2_2 >= 0,]
+    x_lim <- range(pos_Ns$N1)
+    y_lim <- range(0, max(pos_Ns$N2_1, pos_Ns$N2_2))
+    plot_ly(x = N1, y = N2_1(), type = 'scatter', mode = 'lines', name = 'dN1/dt = 0') %>%
+  add_trace(x = N1, y = N2_2(), type = 'scatter', mode = 'lines', name = 'dN2/dt = 0') %>%
+  add_trace(x = 0.5, y = 0.5, type = 'scatter', mode = 'markers', name = 'Equilibrium point') %>%
+  layout(xaxis = list(title = 'N1', range = x_lim), yaxis = list(title = 'N2', range = y_lim))
+  })
+}
+
+# Create Shiny app ----
+shinyApp(ui = ui, server = server)
+```
+
+
+
+The Jacobian matrix is given by:
+
+$$
+J = \begin{pmatrix}
+\frac{\partial f_1}{\partial N_1} & \frac{\partial f_1}{\partial N_2} \\
+\frac{\partial f_2}{\partial N_1} & \frac{\partial f_2}{\partial N_2}
+\end{pmatrix}
+$$
+
+where $f_1 = r_1 \left(1 - \alpha_{11} N_1 - \alpha_{12} N_2\right) N_1$ and $f_2 = r_2 \left(1 - \alpha_{21} N_1 - \alpha_{22} N_2\right) N_2$. The eigenvalues of the Jacobian matrix determine the stability of the equilibrium points.
+
+
+
