@@ -9,7 +9,7 @@
 <meta name="author" content="Christopher klausmeier; Liang Xu">
 <meta name="dcterms.date" content="2024-01-29">
 
-<title>ResourceCompetitionSeminar - 01 – Lotka-Volterra competition model and the modern coexistence theory</title>
+<title>Resource Competition Seminar 2024 - 01 – Lotka-Volterra competition model and the modern coexistence theory</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -141,7 +141,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -149,7 +149,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">ResourceCompetitionSeminar</span>
+    <span class="navbar-title">Resource Competition Seminar 2024</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -163,12 +163,12 @@ window.Quarto = {
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/xl0418/"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/liangxuhuang"> <i class="bi bi-linkedin" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -182,7 +182,7 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
+    <div class="quarto-title column-page">
       <h1 class="title">01 – Lotka-Volterra competition model and the modern coexistence theory</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">Lectures</div>
@@ -191,7 +191,7 @@ window.Quarto = {
   </div>
     
   
-  <div class="quarto-title-meta">
+  <div class="quarto-title-meta column-page">
 
       <div>
       <div class="quarto-title-meta-heading">Author</div>
@@ -211,12 +211,12 @@ window.Quarto = {
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
 
 
 
@@ -277,13 +277,13 @@ ui &lt;- fluidPage(
     width = 2
   ),
   mainPanel(
-    plotlyOutput("plot", width=800)
+    plotlyOutput("plot", width=1000)
   )
 
 )
 
 server &lt;- function(input, output, session) {
-    N1 &lt;- seq(0, 10, 0.01)
+    N1 &lt;- seq(0, 20, 0.01)
     N2_1 &lt;-reactive({
       (1 - input$alpha11 * N1) / input$alpha12 
     })
@@ -294,7 +294,7 @@ server &lt;- function(input, output, session) {
     
   output$plot &lt;- renderPlotly({
     Ns &lt;- data.frame(N1 = N1, N2_1 = N2_1(), N2_2 = N2_2())
-    pos_Ns &lt;- Ns[Ns$N1 &gt;= 0 &amp; Ns$N2_1 &gt;= 0 &amp; Ns$N2_2 &gt;= 0,]
+    pos_Ns &lt;- Ns[Ns$N1 &gt;= 0 &amp; Ns$N2_1 &gt;= 0 | Ns$N2_2 &gt;= 0,]
     x_lim &lt;- range(pos_Ns$N1)
     y_lim &lt;- range(0, max(pos_Ns$N2_1, pos_Ns$N2_2))
     plot_ly(x = N1, y = N2_1(), type = 'scatter', mode = 'lines', name = 'dN1/dt = 0') %&gt;%
