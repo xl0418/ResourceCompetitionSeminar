@@ -1,5 +1,5 @@
 ---
-title: "ResourceCompetitionSeminar"
+title: "Resource Competition Seminar 2024"
 listing:
   contents: posts
   sort: "date desc"

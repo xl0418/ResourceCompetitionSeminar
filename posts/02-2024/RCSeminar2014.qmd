@@ -1,5 +1,5 @@
 ---
-title: "01 -- Lotka-Volterra competition model and the modern coexistence theory"
+title: "02 -- Lotka-Volterra competition model and the modern coexistence theory"
 author: "Christopher klausmeier; Liang Xu"
 date: "2024-01-29"
 categories: [Lectures]
@@ -60,52 +60,74 @@ The equilibrium points are the intersection of the isoclines.
 #| standalone: true
 #| viewerHeight: 600
 #| viewerWidth: 1000
+
 library(shiny)
 library(bslib)
 library(plotly)
+library(Matrix)
 
 # Define UI for app that draws a histogram ----
 ui <- fluidPage(
+  withMathJax(),
   headerPanel('Two species isoclines'),
   sidebarPanel(
-    numericInput('alpha11', 'Alpha 11', 1.5, min = 1, max = 10),
-    numericInput('alpha12', 'Alpha 12', 0.8, min = 1, max = 10),
-    numericInput('alpha21', 'Alpha 21', 0.9, min = 1, max = 10),
-    numericInput('alpha22', 'Alpha 22', 1.1, min = 1, max = 10),
+    numericInput('alpha11', div(HTML("&alpha;<sub>11</sub>")), 1.5, min = 1, max = 10),
+    numericInput('alpha12', div(HTML("&alpha;<sub>12</sub>")), 0.8, min = 1, max = 10),
+    numericInput('alpha21', div(HTML("&alpha;<sub>21</sub>")), 0.9, min = 1, max = 10),
+    numericInput('alpha22', div(HTML("&alpha;<sub>22</sub>")), 1.1, min = 1, max = 10),
     width = 2
   ),
   mainPanel(
-    plotlyOutput("plot", width=800)
+    plotlyOutput("plot", width=900)
   )
-
+  
 )
 
 server <- function(input, output, session) {
-    N1 <- seq(0, 10, 0.01)
-    N2_1 <-reactive({
-      (1 - input$alpha11 * N1) / input$alpha12 
-    })
-    
-    N2_2 <- reactive({
-      (1 - input$alpha21 * N1) / input$alpha22
-    })
-    
+  N1 <- seq(0, 20, 0.01)
+  N2_1 <-reactive({
+    (1 - input$alpha11 * N1) / input$alpha12 
+  })
+  
+  N2_2 <- reactive({
+    (1 - input$alpha21 * N1) / input$alpha22
+  })
+  
+  rank_A <- reactive({
+    rankMatrix(matrix(c(input$alpha11, input$alpha21, input$alpha12, input$alpha22), 2, 2))[1]
+  })
+  
+  
   output$plot <- renderPlotly({
     Ns <- data.frame(N1 = N1, N2_1 = N2_1(), N2_2 = N2_2())
-    pos_Ns <- Ns[Ns$N1 >= 0 & Ns$N2_1 >= 0 & Ns$N2_2 >= 0,]
+    pos_Ns <- Ns[Ns$N1 >= 0 & Ns$N2_1 >= 0 | Ns$N2_2 >= 0,]
     x_lim <- range(pos_Ns$N1)
     y_lim <- range(0, max(pos_Ns$N2_1, pos_Ns$N2_2))
-    plot_ly(x = N1, y = N2_1(), type = 'scatter', mode = 'lines', name = 'dN1/dt = 0') %>%
-  add_trace(x = N1, y = N2_2(), type = 'scatter', mode = 'lines', name = 'dN2/dt = 0') %>%
-  add_trace(x = 0.5, y = 0.5, type = 'scatter', mode = 'markers', name = 'Equilibrium point') %>%
-  layout(xaxis = list(title = 'N1', range = x_lim), yaxis = list(title = 'N2', range = y_lim))
+    
+    if(rank_A() == 2){
+      sol <- reactive({solve(matrix(c(input$alpha11, input$alpha21, input$alpha12, input$alpha22), 2, 2), c(1, 1))})
+      
+      p <- plot_ly(x = N1, y = N2_1(), type = 'scatter', mode = 'lines', name = 'dN1/dt = 0') %>%
+        add_trace(x = N1, y = N2_2(), type = 'scatter', mode = 'lines', name = 'dN2/dt = 0') %>%
+        add_trace(x = sol()[1], y = sol()[2], type = 'scatter', mode = 'markers', name = 'Stable equilibrium point',
+                  marker = list(color = 'rgb(0, 0, 0)', size = 10, line = list(color = 'rgb(0, 0, 0)',
+        width = 1
+      ))) %>%
+        layout(xaxis = list(title = 'N1', range = x_lim), yaxis = list(title = 'N2', range = y_lim))
+    } else {
+      p <- plot_ly(x = N1, y = N2_1(), type = 'scatter', mode = 'lines', name = 'dN1/dt = 0') %>%
+        add_trace(x = N1, y = N2_2(), type = 'scatter', mode = 'lines', name = 'dN2/dt = 0') %>%
+        layout(xaxis = list(title = 'N1', range = x_lim), yaxis = list(title = 'N2', range = y_lim))
+    }
+    
+    p
   })
+  
 }
 
 # Create Shiny app ----
 shinyApp(ui = ui, server = server)
 ```
-
 
 
 The Jacobian matrix is given by:
@@ -118,6 +140,3 @@ J = \begin{pmatrix}
 $$
 
 where $f_1 = r_1 \left(1 - \alpha_{11} N_1 - \alpha_{12} N_2\right) N_1$ and $f_2 = r_2 \left(1 - \alpha_{21} N_1 - \alpha_{22} N_2\right) N_2$. The eigenvalues of the Jacobian matrix determine the stability of the equilibrium points.
-
-
-
