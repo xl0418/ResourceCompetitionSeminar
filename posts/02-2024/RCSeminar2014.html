@@ -9,7 +9,7 @@
 <meta name="author" content="Christopher klausmeier; Liang Xu">
 <meta name="dcterms.date" content="2024-01-29">
 
-<title>ResourceCompetitionSeminar - 02 – Lotka-Volterra competition model and the modern coexistence theory</title>
+<title>Resource Competition Seminar - 02 – Lotka-Volterra competition model and the modern coexistence theory</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -149,7 +149,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">ResourceCompetitionSeminar</span>
+    <span class="navbar-title">Resource Competition Seminar</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -263,6 +263,11 @@ window.Quarto = {
 #| viewerHeight: 600
 #| viewerWidth: 1000
 
+library(shiny)
+library(bslib)
+library(plotly)
+library(Matrix)
+
 # Define UI for app that draws a histogram ----
 ui &lt;- fluidPage(
   headerPanel('Two species isoclines'),
@@ -290,18 +295,18 @@ server &lt;- function(input, output, session) {
   })
   
   rank_A &lt;- reactive({
-    rankMatrix(matrix(c(input$alpha11, input$alpha21, input$alpha12, input$alpha22), 2, 2))
+    rankMatrix(matrix(c(input$alpha11, input$alpha21, input$alpha12, input$alpha22), 2, 2))[1]
   })
-
+  
   
   output$plot &lt;- renderPlotly({
     Ns &lt;- data.frame(N1 = N1, N2_1 = N2_1(), N2_2 = N2_2())
     pos_Ns &lt;- Ns[Ns$N1 &gt;= 0 &amp; Ns$N2_1 &gt;= 0 | Ns$N2_2 &gt;= 0,]
     x_lim &lt;- range(pos_Ns$N1)
     y_lim &lt;- range(0, max(pos_Ns$N2_1, pos_Ns$N2_2))
-
+    
     if(rank_A() == 2){
-      sol &lt;- solve(matrix(c(input$alpha11, input$alpha21, input$alpha12, input$alpha22), 2, 2))
+      sol &lt;- reactive({solve(matrix(c(input$alpha11, input$alpha21, input$alpha12, input$alpha22), 2, 2), c(1, 1))})
       
       p &lt;- plot_ly(x = N1, y = N2_1(), type = 'scatter', mode = 'lines', name = 'dN1/dt = 0') %&gt;%
         add_trace(x = N1, y = N2_2(), type = 'scatter', mode = 'lines', name = 'dN2/dt = 0') %&gt;%
@@ -312,7 +317,7 @@ server &lt;- function(input, output, session) {
         add_trace(x = N1, y = N2_2(), type = 'scatter', mode = 'lines', name = 'dN2/dt = 0') %&gt;%
         layout(xaxis = list(title = 'N1', range = x_lim), yaxis = list(title = 'N2', range = y_lim))
     }
-
+    
     p
   })
   
