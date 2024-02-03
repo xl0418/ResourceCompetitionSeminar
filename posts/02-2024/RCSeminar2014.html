@@ -182,7 +182,7 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
+    <div class="quarto-title column-page-left">
       <h1 class="title">02 – Lotka-Volterra competition model and the modern coexistence theory</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">Lectures</div>
@@ -191,7 +191,7 @@ window.Quarto = {
   </div>
     
   
-  <div class="quarto-title-meta column-page">
+  <div class="quarto-title-meta column-page-left">
 
       <div>
       <div class="quarto-title-meta-heading">Author</div>
@@ -214,9 +214,18 @@ window.Quarto = {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#two-species-lotka-volterra-competition-model" id="toc-two-species-lotka-volterra-competition-model" class="nav-link active" data-scroll-target="#two-species-lotka-volterra-competition-model">Two-species Lotka-Volterra competition model</a></li>
+  <li><a href="#the-phase-plane-analysis" id="toc-the-phase-plane-analysis" class="nav-link" data-scroll-target="#the-phase-plane-analysis">The phase-plane analysis</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
 
 
@@ -270,12 +279,13 @@ library(Matrix)
 
 # Define UI for app that draws a histogram ----
 ui &lt;- fluidPage(
+  withMathJax(),
   headerPanel('Two species isoclines'),
   sidebarPanel(
-    numericInput('alpha11', 'Alpha 11', 1.5, min = 1, max = 10),
-    numericInput('alpha12', 'Alpha 12', 0.8, min = 1, max = 10),
-    numericInput('alpha21', 'Alpha 21', 0.9, min = 1, max = 10),
-    numericInput('alpha22', 'Alpha 22', 1.1, min = 1, max = 10),
+    numericInput('alpha11', div(HTML("&amp;alpha;&lt;sub&gt;11&lt;/sub&gt;")), 1.5, min = 1, max = 10),
+    numericInput('alpha12', div(HTML("&amp;alpha;&lt;sub&gt;12&lt;/sub&gt;")), 0.8, min = 1, max = 10),
+    numericInput('alpha21', div(HTML("&amp;alpha;&lt;sub&gt;21&lt;/sub&gt;")), 0.9, min = 1, max = 10),
+    numericInput('alpha22', div(HTML("&amp;alpha;&lt;sub&gt;22&lt;/sub&gt;")), 1.1, min = 1, max = 10),
     width = 2
   ),
   mainPanel(
@@ -310,7 +320,10 @@ server &lt;- function(input, output, session) {
       
       p &lt;- plot_ly(x = N1, y = N2_1(), type = 'scatter', mode = 'lines', name = 'dN1/dt = 0') %&gt;%
         add_trace(x = N1, y = N2_2(), type = 'scatter', mode = 'lines', name = 'dN2/dt = 0') %&gt;%
-        add_trace(x = sol()[1], y = sol()[2], type = 'scatter', mode = 'markers', name = 'Equilibrium point') %&gt;%
+        add_trace(x = sol()[1], y = sol()[2], type = 'scatter', mode = 'markers', name = 'Stable equilibrium point',
+                  marker = list(color = 'rgb(0, 0, 0)', size = 10, line = list(color = 'rgb(0, 0, 0)',
+        width = 1
+      ))) %&gt;%
         layout(xaxis = list(title = 'N1', range = x_lim), yaxis = list(title = 'N2', range = y_lim))
     } else {
       p &lt;- plot_ly(x = N1, y = N2_1(), type = 'scatter', mode = 'lines', name = 'dN1/dt = 0') %&gt;%
