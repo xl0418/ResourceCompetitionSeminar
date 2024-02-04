@@ -221,6 +221,10 @@ window.Quarto = {
   <ul>
   <li><a href="#two-species-lotka-volterra-competition-model" id="toc-two-species-lotka-volterra-competition-model" class="nav-link active" data-scroll-target="#two-species-lotka-volterra-competition-model">Two-species Lotka-Volterra competition model</a></li>
   <li><a href="#the-phase-plane-analysis" id="toc-the-phase-plane-analysis" class="nav-link" data-scroll-target="#the-phase-plane-analysis">The phase-plane analysis</a></li>
+  <li><a href="#the-stability-of-the-equilibrium-points" id="toc-the-stability-of-the-equilibrium-points" class="nav-link" data-scroll-target="#the-stability-of-the-equilibrium-points">The stability of the equilibrium points</a></li>
+  <li><a href="#invasion-analysis" id="toc-invasion-analysis" class="nav-link" data-scroll-target="#invasion-analysis">Invasion analysis</a></li>
+  <li><a href="#modern-coexistence-theory" id="toc-modern-coexistence-theory" class="nav-link" data-scroll-target="#modern-coexistence-theory">Modern coexistence theory</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -231,13 +235,14 @@ window.Quarto = {
 
 
 
+<p>Two-species Lotka-Volterra competition model and the modern coexistence theory will be talked.</p>
 <section id="two-species-lotka-volterra-competition-model" class="level1">
 <h1>Two-species Lotka-Volterra competition model</h1>
-<p>The model is given by</p>
+<p>The two-species Lotka-Volterra competition model is defined as</p>
 <p><span class="math display">\[
 \begin{aligned}
-\frac{dN_1}{dt} &amp;= r_1 \left(1 - \alpha_{11} N_1 - \alpha_{12} N_2\right) N_1 \\
-\frac{dN_2}{dt} &amp;= r_2 \left(1 - \alpha_{21} N_1 - \alpha_{22} N_2\right) N_2
+\frac{dN_1}{dt} &amp;=  \left(r_1 - \alpha_{11} N_1 - \alpha_{12} N_2\right) N_1 \\
+\frac{dN_2}{dt} &amp;=  \left(r_2 - \alpha_{21} N_1 - \alpha_{22} N_2\right) N_2
 \end{aligned}
 \]</span></p>
 <p>where <span class="math inline">\(N_1\)</span> and <span class="math inline">\(N_2\)</span> are the population sizes of species 1 and 2, respectively, <span class="math inline">\(r_1\)</span> and <span class="math inline">\(r_2\)</span> are the intrinsic growth rates, and <span class="math inline">\(\alpha_{ij}\)</span>s are the competition coefficients.</p>
@@ -247,8 +252,8 @@ window.Quarto = {
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  N1 <span class="ot">&lt;-</span> <span class="fu">c</span>(N10)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  N2 <span class="ot">&lt;-</span> <span class="fu">c</span>(N20)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(ti <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>tt){</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    dN1 <span class="ot">&lt;-</span> r1 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> alpha11 <span class="sc">*</span> N1[ti] <span class="sc">-</span> alpha12 <span class="sc">*</span> N2[ti]) <span class="sc">*</span> N1[ti]</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    dN2 <span class="ot">&lt;-</span> r2 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> alpha21 <span class="sc">*</span> N1[ti] <span class="sc">-</span> alpha22 <span class="sc">*</span> N2[ti]) <span class="sc">*</span> N2[ti]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    dN1 <span class="ot">&lt;-</span> (r1 <span class="sc">-</span> alpha11 <span class="sc">*</span> N1[ti] <span class="sc">-</span> alpha12 <span class="sc">*</span> N2[ti]) <span class="sc">*</span> N1[ti]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    dN2 <span class="ot">&lt;-</span> (r2 <span class="sc">-</span> alpha21 <span class="sc">*</span> N1[ti] <span class="sc">-</span> alpha22 <span class="sc">*</span> N2[ti]) <span class="sc">*</span> N2[ti]</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    N1 <span class="ot">&lt;-</span> <span class="fu">c</span>(N1, N1[ti] <span class="sc">+</span> dN1)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    N2 <span class="ot">&lt;-</span> <span class="fu">c</span>(N2, N2[ti] <span class="sc">+</span> dN2)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  }</span>
@@ -256,20 +261,37 @@ window.Quarto = {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Five types of outcomes are possible:</p>
+<blockquote class="blockquote">
+<p><strong>Case 1: Species 1 wins</strong></p>
+<p>If <span class="math inline">\(r_1 / \alpha_{11} &gt; r_2 / \alpha_{21}\)</span> and <span class="math inline">\(r_1 / \alpha_{12} &gt; r_2 / \alpha_{22}\)</span>, species 1 will win. The ecosystem will reach equilibrium at <span class="math inline">\((r_1 / \alpha_{11}, 0)\)</span>.</p>
+<p><strong>Case 2: Species 2 wins</strong></p>
+<p>If <span class="math inline">\(r_1 / \alpha_{11} &lt; r_2 / \alpha_{21}\)</span> and <span class="math inline">\(r_1 / \alpha_{12} &lt; r_2 / \alpha_{22}\)</span>, species 2 will win. The ecosystem will reach equilibrium at <span class="math inline">\((0, r_2 / \alpha_{22})\)</span>.</p>
+<p><strong>Case 3: Coexistence</strong></p>
+<p>If <span class="math inline">\(r_1 / \alpha_{11} &lt; r_2 / \alpha_{21}\)</span> and <span class="math inline">\(r_1 / \alpha_{12} &gt; r_2 / \alpha_{22}\)</span>, the two species will coexist. The equilibrium point is given by the solution of the following equations:</p>
+<p><span class="math display">\[
+r_1 - \alpha_{11} N_1 - \alpha_{12} N_2 =0 \\
+r_2 - \alpha_{21} N_1 - \alpha_{22} N_2 =0
+\]</span></p>
+<p><strong>Case 4: Founder control</strong></p>
+<p>If <span class="math inline">\(r_1 / \alpha_{11} &gt; r_2 / \alpha_{21}\)</span> and <span class="math inline">\(r_1 / \alpha_{12} &lt; r_2 / \alpha_{22}\)</span>, the species with a larger density at the initial stage will win. The ecosystem will reach equilibrium at the corresponding species’ equilibrium point.</p>
+<p><strong>Case 5: Neutrality</strong></p>
+<p>If the two species share all parameters, their zero-net-population-isoclines (ZNGIs) are overlapping.</p>
+</blockquote>
 </section>
 <section id="the-phase-plane-analysis" class="level1">
 <h1>The phase-plane analysis</h1>
 <p>The zero-net growth isoclines are given by:</p>
 <p><span class="math display">\[
 \begin{aligned}
-\frac{dN_1}{dt} &amp;= 0 \Rightarrow N_1 = \frac{1}{\alpha_{11}} \left(1 - \alpha_{12} N_2\right) \\
-\frac{dN_2}{dt} &amp;= 0 \Rightarrow N_2 = \frac{1}{\alpha_{22}} \left(1 - \alpha_{21} N_1\right)
+\frac{dN_1}{dt} &amp;= 0 \Rightarrow N_1 = \frac{\left(r_1 - \alpha_{12} N_2\right)}{\alpha_{11}}  \\
+\frac{dN_2}{dt} &amp;= 0 \Rightarrow N_2 = \frac{\left(r_2 - \alpha_{21} N_1\right)}{\alpha_{22}}
 \end{aligned}
 \]</span></p>
 <p>Plot the isoclines in the phase plane.</p>
 <p>The equilibrium points are the intersection of the isoclines.</p>
 <pre class="shinylive-r" data-engine="r"><code>#| standalone: true
-#| viewerHeight: 600
+#| viewerHeight: 700
 #| viewerWidth: 1000
 
 library(shiny)
@@ -277,57 +299,179 @@ library(bslib)
 library(plotly)
 library(Matrix)
 
+Sim_lotka_volterra &lt;- function(tt, alpha11, alpha12, alpha21, alpha22, r1, r2, N10, N20) {
+  N1 &lt;- c(N10)
+  N2 &lt;- c(N20)
+  for(ti in 1:tt){
+    dN1 &lt;- (r1 - alpha11 * N1[ti] - alpha12 * N2[ti]) * N1[ti]
+    dN2 &lt;- (r2 - alpha21 * N1[ti] - alpha22 * N2[ti]) * N2[ti]
+    N1 &lt;- c(N1, N1[ti] + dN1)
+    N2 &lt;- c(N2, N2[ti] + dN2)
+  }
+  return(data.frame(N1 = N1, N2 = N2))
+  
+}
+
+
+# Define UI for app that draws a histogram ----
 # Define UI for app that draws a histogram ----
 ui &lt;- fluidPage(
-  withMathJax(),
-  headerPanel('Two species isoclines'),
-  sidebarPanel(
-    numericInput('alpha11', div(HTML("&amp;alpha;&lt;sub&gt;11&lt;/sub&gt;")), 1.5, min = 1, max = 10),
-    numericInput('alpha12', div(HTML("&amp;alpha;&lt;sub&gt;12&lt;/sub&gt;")), 0.8, min = 1, max = 10),
-    numericInput('alpha21', div(HTML("&amp;alpha;&lt;sub&gt;21&lt;/sub&gt;")), 0.9, min = 1, max = 10),
-    numericInput('alpha22', div(HTML("&amp;alpha;&lt;sub&gt;22&lt;/sub&gt;")), 1.1, min = 1, max = 10),
-    width = 2
-  ),
-  mainPanel(
-    plotlyOutput("plot", width=900)
+  headerPanel(''),
+  
+  fluidRow(
+    column(12, 
+           textOutput("text"),
+           tags$head(tags$style("#text{color: black;
+                                 font-size: 30px;
+                                 font-style: italic;
+                                 }"
+           )
+           ),
+           plotlyOutput("plot", width=860)
+    )
+  ), 
+  
+  fluidRow(
+    column(4, 
+           div(style="height: 80px;",sliderInput('r1', 'r1', 0.4, min = 0.1, max = 3)),
+           div(style="height: 80px;",sliderInput('r2', 'r2', 1.1, min = 0.1, max = 3))
+    ),
+    column(4,
+           div(style="height: 80px;", sliderInput('alpha11', HTML("&amp;alpha;&lt;sub&gt;11&lt;/sub&gt;"), 1.5, min = 0.1, max = 5)),
+           div(style="height: 80px;",sliderInput('alpha12', HTML("&amp;alpha;&lt;sub&gt;12&lt;/sub&gt;"), 0.8, min = 0.1, max = 5))
+    ),
+    column(4,
+           div(style="height: 80px;",sliderInput('alpha21', HTML("&amp;alpha;&lt;sub&gt;21&lt;/sub&gt;"), 0.9, min = 0.1, max = 5)),
+           div(style="height: 80px;",sliderInput('alpha22', HTML("&amp;alpha;&lt;sub&gt;22&lt;/sub&gt;"), 1.1, min = 0.1, max = 5))
+    )
   )
+  
   
 )
 
 server &lt;- function(input, output, session) {
   N1 &lt;- seq(0, 20, 0.01)
   N2_1 &lt;-reactive({
-    (1 - input$alpha11 * N1) / input$alpha12 
+    (input$r1 - input$alpha11 * N1) / input$alpha12 
   })
   
   N2_2 &lt;- reactive({
-    (1 - input$alpha21 * N1) / input$alpha22
+    (input$r2 - input$alpha21 * N1) / input$alpha22
+  })
+
+  
+  # sim lv model
+  sim_result &lt;- reactive({
+    Sim_lotka_volterra(100, input$alpha11, input$alpha12, input$alpha21, input$alpha22, input$r1, input$r2, 0.1, 0.1)
   })
   
-  rank_A &lt;- reactive({
-    rankMatrix(matrix(c(input$alpha11, input$alpha21, input$alpha12, input$alpha22), 2, 2))[1]
+  output$text &lt;- renderText({
+    if(input$r1 / input$alpha11 &gt; input$r2 / input$alpha21 &amp; input$r1 / input$alpha12 &gt;  input$r2 / input$alpha22){HTML("Case 1: Species 1 wins")}
+    else if(input$r1 / input$alpha11 &lt; input$r2 / input$alpha21 &amp; input$r1 / input$alpha12 &lt;  input$r2 / input$alpha22){"Case 2: Species 2 wins"}
+    else if(input$r1 / input$alpha11 &lt; input$r2 / input$alpha21 &amp; input$r1 / input$alpha12 &gt;  input$r2 / input$alpha22){"Case 3: Coexistence"}
+    else if(input$r1 / input$alpha11 &gt; input$r2 / input$alpha21 &amp; input$r1 / input$alpha12 &lt;  input$r2 / input$alpha22){"Case 4: Founder control"}
+    else {"Case 5: Neutrality"}
+    
   })
-  
   
   output$plot &lt;- renderPlotly({
     Ns &lt;- data.frame(N1 = N1, N2_1 = N2_1(), N2_2 = N2_2())
-    pos_Ns &lt;- Ns[Ns$N1 &gt;= 0 &amp; Ns$N2_1 &gt;= 0 | Ns$N2_2 &gt;= 0,]
-    x_lim &lt;- range(pos_Ns$N1)
-    y_lim &lt;- range(0, max(pos_Ns$N2_1, pos_Ns$N2_2))
+    pos_Ns &lt;- Ns[Ns$N2_1 &gt;= 0 | Ns$N2_2 &gt;= 0,]
+    x_lim &lt;- c(0, max(pos_Ns$N1) + 1)
+    y_lim &lt;- c(0, max(pos_Ns$N2_1, pos_Ns$N2_2)+1)
+    p &lt;- plot_ly(x = N1, y = N2_1(), type = 'scatter', mode = 'lines', name = 'dN1/dt = 0') %&gt;%
+      add_trace(x = N1, y = N2_2(), type = 'scatter', mode = 'lines', name = 'dN2/dt = 0') %&gt;%
+      add_trace(x = -1, y = -1, type = 'scatter', mode = 'markers', name = 'Stable equilibrium point',
+                marker = list(color = 'rgb(0, 0, 0)', size = 10, line = list(color = 'rgb(0, 0, 0)',
+                                                                             width = 1
+                ))) %&gt;%
+      add_trace(x = -2, y = -1, type = 'scatter', mode = 'markers', name = 'Unstable equilibrium point',
+                marker = list(color = 'rgb(255, 255, 255)', size = 10, line = list(color = 'rgb(0, 0, 0)',
+                                                                             width = 1
+                ))) %&gt;%
+      add_trace(x = sim_result()$N1, y = sim_result()$N2, type = 'scatter', mode = 'lines+markers', name = 'Trajectory', 
+                marker = list(color = 'grey'), line = list(color = 'grey')) %&gt;%
+      add_trace(x = 0.1, y=0.1, type = 'scatter', mode = 'markers', name = 'Initial condition',
+                marker = list(color = 'rgb(0, 0, 0)', size = 5, line = list(color = 'rgb(0, 0, 0)',
+                                                                             width = 1
+                )))
     
-    if(rank_A() == 2){
-      sol &lt;- reactive({solve(matrix(c(input$alpha11, input$alpha21, input$alpha12, input$alpha22), 2, 2), c(1, 1))})
-      
-      p &lt;- plot_ly(x = N1, y = N2_1(), type = 'scatter', mode = 'lines', name = 'dN1/dt = 0') %&gt;%
-        add_trace(x = N1, y = N2_2(), type = 'scatter', mode = 'lines', name = 'dN2/dt = 0') %&gt;%
-        add_trace(x = sol()[1], y = sol()[2], type = 'scatter', mode = 'markers', name = 'Stable equilibrium point',
+    if(input$r1 / input$alpha11 &gt; input$r2 / input$alpha21 &amp; input$r1 / input$alpha12 &gt;  input$r2 / input$alpha22){
+      p &lt;- p %&gt;%
+        add_trace(x = input$r1 / input$alpha11, y = 0, type = 'scatter', mode = 'markers', name = 'Stable equilibrium point',
                   marker = list(color = 'rgb(0, 0, 0)', size = 10, line = list(color = 'rgb(0, 0, 0)',
-        width = 1
-      ))) %&gt;%
+                                                                               width = 1
+                  )), showlegend = FALSE) %&gt;%
+        add_trace(x = 0, y = input$r2 / input$alpha22, type = 'scatter', mode = 'markers', name = 'Unstable equilibrium point',
+                  marker = list(color = 'rgb(255, 255, 255)', size = 10, line = list(color = 'rgb(0, 0, 0)',
+                                                                               width = 1
+                  )), showlegend = FALSE) %&gt;%
+        add_trace(x = 0, y = 0, type = 'scatter', mode = 'markers', name = 'Unstable equilibrium point',
+                  marker = list(color = 'rgb(255, 255, 255)', size = 10, line = list(color = 'rgb(0, 0, 0)',
+                                                                                     width = 1
+                  )), showlegend = FALSE) %&gt;%
+        layout(xaxis = list(title = 'N1', range = x_lim), yaxis = list(title = 'N2', range = y_lim))
+    } else if(input$r1 / input$alpha11 &lt; input$r2 / input$alpha21 &amp; input$r1 / input$alpha12 &lt;  input$r2 / input$alpha22){
+
+        p &lt;- p %&gt;%
+          add_trace(x = input$r1 / input$alpha11, y = 0, type = 'scatter', mode = 'markers', name = '',
+                  marker = list(color = 'rgb(255, 255, 255)', size = 10, line = list(color = 'rgb(0, 0, 0)',
+                                                                               width = 1
+                  )), showlegend = FALSE) %&gt;%
+        add_trace(x = 0, y = input$r2 / input$alpha22, type = 'scatter', mode = 'markers', name = '',
+                  marker = list(color = 'rgb(0, 0, 0)', size = 10, line = list(color = 'rgb(0, 0, 0)',
+                                                                               width = 1
+                  )), showlegend = FALSE) %&gt;%
+        add_trace(x = 0, y = 0, type = 'scatter', mode = 'markers', name = '',
+                  marker = list(color = 'rgb(255, 255, 255)', size = 10, line = list(color = 'rgb(0, 0, 0)',
+                                                                                     width = 1
+                  )), showlegend = FALSE) %&gt;%
+        layout(xaxis = list(title = 'N1', range = x_lim), yaxis = list(title = 'N2', range = y_lim))
+    } else if(input$r1 / input$alpha11 &lt; input$r2 / input$alpha21 &amp; input$r1 / input$alpha12 &gt;  input$r2 / input$alpha22){
+      sol &lt;- reactive({solve(matrix(c(input$alpha11, input$alpha21, input$alpha12, input$alpha22), 2, 2), c(input$r1, input$r2))})
+      
+      p &lt;- p %&gt;%
+        add_trace(x = sol()[1], y = sol()[2], type = 'scatter', mode = 'markers', name = '',
+                       marker = list(color = 'rgb(0, 0, 0)', size = 10, line = list(color = 'rgb(0, 0, 0)',
+                                                                                    width = 1
+                       )), showlegend = FALSE) %&gt;%
+        add_trace(x = input$r1 / input$alpha11, y = 0, type = 'scatter', mode = 'markers', name = '',
+                  marker = list(color = 'rgb(255, 255, 255)', size = 10, line = list(color = 'rgb(0, 0, 0)',
+                                                                                     width = 1
+                  )), showlegend = FALSE) %&gt;%
+        add_trace(x = 0, y = input$r2 / input$alpha22, type = 'scatter', mode = 'markers', name = '',
+                  marker = list(color = 'rgb(255, 255, 255)', size = 10, line = list(color = 'rgb(0, 0, 0)',
+                                                                               width = 1
+                  )), showlegend = FALSE) %&gt;%
+        add_trace(x = 0, y = 0, type = 'scatter', mode = 'markers', name = '',
+                  marker = list(color = 'rgb(255, 255, 255)', size = 10, line = list(color = 'rgb(0, 0, 0)',
+                                                                                     width = 1
+                  )), showlegend = FALSE) %&gt;%
+        layout(xaxis = list(title = 'N1', range = x_lim), yaxis = list(title = 'N2', range = y_lim))
+      
+    } else if(input$r1 / input$alpha11 &gt; input$r2 / input$alpha21 &amp; input$r1 / input$alpha12 &lt;  input$r2 / input$alpha22){
+      sol &lt;- reactive({solve(matrix(c(input$alpha11, input$alpha21, input$alpha12, input$alpha22), 2, 2), c(input$r1, input$r2))})
+      
+      p &lt;- p %&gt;%
+        add_trace(x = sol()[1], y = sol()[2], type = 'scatter', mode = 'markers', name = '',
+                  marker = list(color = 'rgb(255, 255, 255)', size = 10, line = list(color = 'rgb(0, 0, 0)',
+                                                                               width = 1
+                  )), showlegend = FALSE) %&gt;%
+        add_trace(x = input$r1 / input$alpha11, y = 0, type = 'scatter', mode = 'markers', name = '',
+                  marker = list(color = 'rgb(0, 0, 0)', size = 10, line = list(color = 'rgb(0, 0, 0)',
+                                                                               width = 1
+                  )), showlegend = FALSE) %&gt;%
+        add_trace(x = 0, y = input$r2 / input$alpha22, type = 'scatter', mode = 'markers', name = '',
+                  marker = list(color = 'rgb(0, 0, 0)', size = 10, line = list(color = 'rgb(0, 0, 0)',
+                                                                                     width = 1
+                  )), showlegend = FALSE) %&gt;%
+        add_trace(x = 0, y = 0, type = 'scatter', mode = 'markers', name = '',
+                  marker = list(color = 'rgb(255, 255, 255)', size = 10, line = list(color = 'rgb(0, 0, 0)',
+                                                                                     width = 1
+                  )), showlegend = FALSE) %&gt;%
         layout(xaxis = list(title = 'N1', range = x_lim), yaxis = list(title = 'N2', range = y_lim))
     } else {
-      p &lt;- plot_ly(x = N1, y = N2_1(), type = 'scatter', mode = 'lines', name = 'dN1/dt = 0') %&gt;%
-        add_trace(x = N1, y = N2_2(), type = 'scatter', mode = 'lines', name = 'dN2/dt = 0') %&gt;%
+      p &lt;- p %&gt;%
         layout(xaxis = list(title = 'N1', range = x_lim), yaxis = list(title = 'N2', range = y_lim))
     }
     
@@ -335,17 +479,95 @@ server &lt;- function(input, output, session) {
   })
   
 }
-
 # Create Shiny app ----
 shinyApp(ui = ui, server = server)</code></pre>
-<p>The Jacobian matrix is given by:</p>
+</section>
+<section id="the-stability-of-the-equilibrium-points" class="level1">
+<h1>The stability of the equilibrium points</h1>
+<p>Consider a small perturbation from an equilibrium.</p>
+<p>Calculate eigenvalues <span class="math inline">\(\lambda\)</span> of Jacobian matrix <span class="math inline">\(J\)</span> evaluated at an equilibrium <span class="math inline">\((N_1^*, N_2^*)\)</span>:</p>
 <p><span class="math display">\[
-J = \begin{pmatrix}
+J = \left.\begin{pmatrix}
 \frac{\partial f_1}{\partial N_1} &amp; \frac{\partial f_1}{\partial N_2} \\
 \frac{\partial f_2}{\partial N_1} &amp; \frac{\partial f_2}{\partial N_2}
-\end{pmatrix}
+\end{pmatrix}\right|_{(N_1^*, N_2^*)}
 \]</span></p>
-<p>where <span class="math inline">\(f_1 = r_1 \left(1 - \alpha_{11} N_1 - \alpha_{12} N_2\right) N_1\)</span> and <span class="math inline">\(f_2 = r_2 \left(1 - \alpha_{21} N_1 - \alpha_{22} N_2\right) N_2\)</span>. The eigenvalues of the Jacobian matrix determine the stability of the equilibrium points.</p>
+<p>where <span class="math inline">\(f_1 =  \left(r_1 - \alpha_{11} N_1 - \alpha_{12} N_2\right) N_1\)</span> and <span class="math inline">\(f_2 = \left(r_2 - \alpha_{21} N_1 - \alpha_{22} N_2\right) N_2\)</span>. The eigenvalues of the Jacobian matrix determine the stability of the equilibrium points.</p>
+<blockquote class="blockquote">
+<p><strong>Stable equilibrium</strong></p>
+<p>If the eighenvalues have negative real parts, the equilibrium point is stable.</p>
+<p><strong>Unstable equilibrium</strong></p>
+<p>If any eighenvalue has positive real parts, the equilibrium point is unstable.</p>
+<p><strong>Stability analysis failure</strong></p>
+<p>If largest eigenvalue is 0, linear stability analysis fails (possibly neutral).</p>
+</blockquote>
+</section>
+<section id="invasion-analysis" class="level1">
+<h1>Invasion analysis</h1>
+<p>The invasion analysis is used to determine the outcome of the competition between two species.</p>
+<p>If any species can invade a community when the other species is at equilibrium, the two species can stably coexist.</p>
+<p>The invasion rate of Species <span class="math inline">\(i\)</span> is defined as the per capita growth rate when rare while Species <span class="math inline">\(j\)</span> is at equilibrium:</p>
+<p><span class="math display">\[
+\lambda_{ij} = \left.\frac{1}{N_i} \frac{dN_i}{dt}\right|_{N_j^*,N_i=0}
+\]</span></p>
+<p>Species <span class="math inline">\(j\)</span> reaches equilibrium at <span class="math inline">\(N_j^*=r_j / \alpha_{jj}\)</span> on its own. So, the invasion rate of Species <span class="math inline">\(i\)</span> yields:</p>
+<p><span class="math display">\[
+\lambda_{ij} = r_i - \frac{\alpha_{ij}}{\alpha_{jj}} r_j
+\]</span></p>
+<p>So, the rule is to examine the sign of <span class="math inline">\(\lambda_{ij}\)</span> and <span class="math inline">\(\lambda_{ji}\)</span>.</p>
+<blockquote class="blockquote">
+<p><strong>Case 1</strong>: Species 1 wins</p>
+<p>If <span class="math inline">\(\lambda_{12} &gt; 0\)</span> and <span class="math inline">\(\lambda_{21} &lt; 0\)</span>, species 1 outcompetes species 2.</p>
+<p><strong>Case 2</strong>: Species 2 wins</p>
+<p>If <span class="math inline">\(\lambda_{12} &lt; 0\)</span> and <span class="math inline">\(\lambda_{21} &gt; 0\)</span>, species 2 outcompetes species 1.</p>
+<p><strong>Case 3</strong>: Coexistence</p>
+<p>If <span class="math inline">\(\lambda_{12} &gt; 0\)</span> and <span class="math inline">\(\lambda_{21} &gt; 0\)</span>, the two species can stably coexist (“mutual invasibility”).</p>
+<p><strong>Case 4</strong>: Founder control</p>
+<p>If <span class="math inline">\(\lambda_{12} &lt; 0\)</span> and <span class="math inline">\(\lambda_{21} &lt; 0\)</span>, it is founder control.</p>
+</blockquote>
+</section>
+<section id="modern-coexistence-theory" class="level1">
+<h1>Modern coexistence theory</h1>
+<p>Peter Chesson (e.g.&nbsp;2000, 2020) developed the modern coexistence theory based on the Lotka-Volterra competition model. Two key concepts, niche differences and fitness differences, are derived from the invasion criterion.</p>
+<p>Based on the invasion criterion, stable coexistence is achieved if and only if the two species are “mutually invasible”:</p>
+<p><span class="math display">\[
+\lambda_{12} &gt; 0 \text{ and } \lambda_{21} &gt; 0
+\]</span></p>
+<p>which are:</p>
+<p><span class="math display">\[
+r_1 - \frac{\alpha_{12}}{\alpha_{22}} r_2 &gt; 0 \text{ and } r_2 - \frac{\alpha_{21}}{\alpha_{11}} r_1 &gt; 0.
+\]</span></p>
+<p>So,</p>
+<p><span class="math display">\[
+\frac{\alpha_{12}}{\alpha_{22}} &lt; \frac{r_1}{r_2} &lt; \frac{\alpha_{11}}{\alpha_{21}}.
+\]</span></p>
+<p>After symmetrizing the inequality, we have</p>
+<p><span class="math display">\[
+\sqrt\frac{\alpha_{12}\alpha_{21}}{\alpha_{11}\alpha_{22}} &lt; \sqrt\frac{\alpha_{12}\alpha_{22}}{\alpha_{11}\alpha_{21}} \frac{r_1}{r_2} &lt; \sqrt\frac{\alpha_{11}\alpha_{22}}{\alpha_{12}\alpha_{21}} .
+\]</span></p>
+<p>which can be simplified as</p>
+<p><span class="math display">\[
+\frac{1}{\rho} &lt; \delta &lt; \rho
+\]</span></p>
+<p>where <span class="math inline">\(\rho = \sqrt\frac{\alpha_{11}\alpha_{22}}{\alpha_{12}\alpha_{21}}\)</span> and <span class="math inline">\(\delta = \sqrt\frac{\alpha_{12}\alpha_{22}}{\alpha_{11}\alpha_{21}} \frac{r_1}{r_2}\)</span>.</p>
+<p><span class="math inline">\(\rho\)</span> is then interpreted as the “niche overlap” and <span class="math inline">\(\delta\)</span> as the “fitness difference”.</p>
+<p>This crieteria then seperates the space of the niche overlap and fitness difference into four regions:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/rho_delta.png" title="niche overlap and fitness difference" class="img-fluid figure-img"></p>
+<figcaption>niche overlap and fitness difference</figcaption>
+</figure>
+</div>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<p>Barabás G, D’Andrea R, Stump SM (2018) Chesson’s coexistence theory. Ecological Monographs 88: 277– 303.</p>
+<p>Chesson P (2000) Mechanisms of maintenance of species diversity. Annual Review of Ecology, Evolution, and Systematics 31: 343–366</p>
+<p>Chesson P (2020) Species coexistence. In: Theoretical Ecology. Oxford University Press, pp 5–27 Gause GF, Witt AA (1935) Behavior of mixed populations and the problem of natural selection. American Naturalist 69: 596–609</p>
+<p>Grainger TN, Levine JM, Gilbert B (2019) The invasion criterion: a common currency for ecological research. Trends in Ecology &amp; Evolution 34: 925–935.</p>
+<p>Kingsland S (1995) Modeling Nature: Episodes in the History of Population Ecology. 2nd edition.</p>
+<p>Mallet J (2012) The struggle for existence: how the notion of carrying capacity, K, obscures the links between demography, Darwinian evolution, and speciation. Evolutionary Ecology Research 14: 627–655</p>
+<p>Metz JAJ, Nisbet RM, Geritz SAH (1992) How should we define “fitness” for general ecological scenarios. Trends in Ecology &amp; Evolution 7: 198–202</p>
 
 
 </section>
