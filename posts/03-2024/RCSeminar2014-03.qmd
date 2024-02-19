@@ -2,7 +2,7 @@
 title: "03 -- The three-species problem"
 author: "Christopher Klausmeier; Liang Xu"
 date: "2024-02-08"
-categories: [Lectures]
+categories: [Paper Discussion]
 filters:
   - shinylive
 ---
@@ -20,6 +20,8 @@ We talked about the three species competition. There are many types of competiti
 >
 > While natural communities can contain hundreds of species, modern coexistence theory focuses primarily on species pairs. Alternatively, the structural stability approach considers the feasibility of equilibria, gaining scalability to larger communities but sacrificing information about dynamic stability. Three-species competitive communities are a bridge to more-diverse communities. They display novel phenomena while remaining amenable to mathematical analysis, but remain incompletely understood. Here, we combine these approaches to identify the key quantities that determine the outcome of competition. We show that pairwise niche overlap and fitness differences are insufficient to completely characterize competitive outcomes, which requires a strictly triplet-wise quantity: cyclic asymmetry. Low pairwise niche overlap stabilizes the triplet, while high fitness differences promote competitive exclusion. The effect of cyclic asymmetry on stability is complex and depends on pairwise niche overlap. In summary, we elucidate how pairwise niche overlap, fitness differences, and cyclic asymmetry determine the outcome of three-species competition.
 
+![Coexistence of three species](figures/Fig1.png "Coexistence of three species")
+
 # Model
 
 The three-species Lotka-Volterra competition model is defined as
@@ -34,27 +36,8 @@ $$
 
 where $N_1$, $N_2$ and $N_3$ are the population sizes of species 1, 2 and 3, respectively, $r_1$, $r_2$ and $r_3$ are the intrinsic growth rates, and $\alpha_{ij}$s are the competition coefficients.
 
-```{r, include=FALSE}
-# Define the model
-Sim_lotka_volterra <- function(tt, alpha11, alpha12, alpha13, alpha21, alpha22, alpha23, alpha31, alpha32, alpha33, r1, r2, r3, N10, N20, N30) {
-  N1 <- c(N10)
-  N2 <- c(N20)
-  N3 <- c(N30)
-  for(ti in 1:tt){
-    dN1 <- (r1 - alpha11 * N1[ti] - alpha12 * N2[ti]) * N1[ti]
-    dN2 <- (r2 - alpha21 * N1[ti] - alpha22 * N2[ti]) * N2[ti]
-    dN3 <- (r3 - alpha31 * N1[ti] - alpha32 * N2[ti]) * N3[ti]
-    N1 <- c(N1, N1[ti] + dN1)
-    N2 <- c(N2, N2[ti] + dN2)
-    N3 <- c(N3, N3[ti] + dN3)
-  }
-  return(data.frame(N1 = N1, N2 = N2, N3 = N3))
-
-}
-```
 
 # The simulation
-
 
 ```{shinylive-r}
 #| standalone: true
@@ -179,4 +162,4 @@ shinyApp(ui = ui, server = server)
 
 # References
 
- **Ravi Ranjan**, **Thomas Koffel**, **Christopher A. Klausmeier**, The three-species problem: incorporating competitive asymmetry and intransitivity in modern coexistence theory, 2024, in press.
+**Ravi Ranjan**, **Thomas Koffel**, **Christopher A. Klausmeier**, The three-species problem: incorporating competitive asymmetry and intransitivity in modern coexistence theory, 2024, in press.
