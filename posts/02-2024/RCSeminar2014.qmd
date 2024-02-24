@@ -12,6 +12,8 @@ library(plotly)
 library(magrittr)
 ```
 
+The video record of the seminar can be found [HERE](https://youtu.be/bPHU42xeHNQ).
+
 Two-species Lotka-Volterra competition model and the modern coexistence theory are discussed.
 
 # Two-species Lotka-Volterra competition model
@@ -46,32 +48,29 @@ Sim_lotka_volterra <- function(tt, alpha11, alpha12, alpha21, alpha22, r1, r2, N
 Five types of outcomes are possible:
 
 > **Case 1: Species 1 wins**
-> 
+>
 > If $r_1 / \alpha_{11} > r_2 / \alpha_{21}$ and $r_1 / \alpha_{12} > r_2 / \alpha_{22}$, species 1 will win. The ecosystem will reach equilibrium at $(r_1 / \alpha_{11}, 0)$.
-> 
+>
 > **Case 2: Species 2 wins**
-> 
+>
 > If $r_1 / \alpha_{11} < r_2 / \alpha_{21}$ and $r_1 / \alpha_{12} < r_2 / \alpha_{22}$, species 2 will win. The ecosystem will reach equilibrium at $(0, r_2 / \alpha_{22})$.
-> 
+>
 > **Case 3: Coexistence**
-> 
+>
 > If $r_1 / \alpha_{11} < r_2 / \alpha_{21}$ and $r_1 / \alpha_{12} > r_2 / \alpha_{22}$, the two species will coexist. The equilibrium point is given by the solution of the following equations:
-> 
+>
 > $$
 > r_1 - \alpha_{11} N_1 - \alpha_{12} N_2 =0 \\
 > r_2 - \alpha_{21} N_1 - \alpha_{22} N_2 =0
 > $$
-> 
+>
 > **Case 4: Founder control**
-> 
+>
 > If $r_1 / \alpha_{11} > r_2 / \alpha_{21}$ and $r_1 / \alpha_{12} < r_2 / \alpha_{22}$, the species with a larger density at the initial stage will win. The ecosystem will reach equilibrium at the corresponding species' equilibrium point.
-> 
+>
 > **Case 5: Neutrality**
-> 
-> If the two species share all parameters, their zero-net-population-isoclines (ZNGIs) are overlapping. 
-
-
-
+>
+> If the two species share all parameters, their zero-net-population-isoclines (ZNGIs) are overlapping.
 
 # The phase-plane analysis
 
@@ -295,20 +294,19 @@ J = \left.\begin{pmatrix}
 \end{pmatrix}\right|_{(N_1^*, N_2^*)}
 $$
 
-where $f_1 =  \left(r_1 - \alpha_{11} N_1 - \alpha_{12} N_2\right) N_1$ and $f_2 = \left(r_2 - \alpha_{21} N_1 - \alpha_{22} N_2\right) N_2$. The eigenvalues of the Jacobian matrix determine the stability of the equilibrium points.
+where $f_1 = \left(r_1 - \alpha_{11} N_1 - \alpha_{12} N_2\right) N_1$ and $f_2 = \left(r_2 - \alpha_{21} N_1 - \alpha_{22} N_2\right) N_2$. The eigenvalues of the Jacobian matrix determine the stability of the equilibrium points.
 
 > **Stable equilibrium**
-> 
+>
 > If the eighenvalues have negative real parts, the equilibrium point is stable.
-> 
+>
 > **Unstable equilibrium**
-> 
+>
 > If any eighenvalue has positive real parts, the equilibrium point is unstable.
-> 
+>
 > **Stability analysis failure**
-> 
+>
 > If largest eigenvalue is 0, linear stability analysis fails (possibly neutral).
-
 
 # Invasion analysis
 
@@ -330,32 +328,27 @@ $$
 
 So, the rule is to examine the sign of $\lambda_{ij}$ and $\lambda_{ji}$.
 
-
-
 > **Case 1**: Species 1 wins
-> 
+>
 > If $\lambda_{12} > 0$ and $\lambda_{21} < 0$, species 1 outcompetes species 2.
-> 
+>
 > **Case 2**: Species 2 wins
-> 
+>
 > If $\lambda_{12} < 0$ and $\lambda_{21} > 0$, species 2 outcompetes species 1.
-> 
+>
 > **Case 3**: Coexistence
-> 
-> If $\lambda_{12} > 0$ and $\lambda_{21} > 0$, the two species can stably coexist (“mutual invasibility”).
-> 
+>
+> If $\lambda_{12} > 0$ and $\lambda_{21} > 0$, the two species can stably coexist ("mutual invasibility").
+>
 > **Case 4**: Founder control
-> 
+>
 > If $\lambda_{12} < 0$ and $\lambda_{21} < 0$, it is founder control.
-
-
 
 # Modern coexistence theory
 
-Peter Chesson (e.g. 2000, 2020) developed the modern coexistence theory based on the Lotka-Volterra competition model. Two key concepts, niche differences and fitness differences,
-are derived from the invasion criterion.
+Peter Chesson (e.g. 2000, 2020) developed the modern coexistence theory based on the Lotka-Volterra competition model. Two key concepts, niche differences and fitness differences, are derived from the invasion criterion.
 
-Based on the invasion criterion, stable coexistence is achieved if and only if the two species are “mutually invasible”:
+Based on the invasion criterion, stable coexistence is achieved if and only if the two species are "mutually invasible":
 
 $$
 \lambda_{12} > 0 \text{ and } \lambda_{21} > 0
@@ -367,7 +360,7 @@ $$
 r_1 - \frac{\alpha_{12}}{\alpha_{22}} r_2 > 0 \text{ and } r_2 - \frac{\alpha_{21}}{\alpha_{11}} r_1 > 0.
 $$
 
-So, 
+So,
 
 $$
 \frac{\alpha_{12}}{\alpha_{22}} < \frac{r_1}{r_2} < \frac{\alpha_{11}}{\alpha_{21}}.
@@ -387,7 +380,7 @@ $$
 
 where $\rho = \sqrt\frac{\alpha_{11}\alpha_{22}}{\alpha_{12}\alpha_{21}}$ and $\delta = \sqrt\frac{\alpha_{12}\alpha_{22}}{\alpha_{11}\alpha_{21}} \frac{r_1}{r_2}$.
 
-$\rho$ is then interpreted as the “niche overlap” and $\delta$ as the “fitness difference”.
+$\rho$ is then interpreted as the "niche overlap" and $\delta$ as the "fitness difference".
 
 This crieteria then seperates the space of the niche overlap and fitness difference into four regions:
 
@@ -395,48 +388,40 @@ This crieteria then seperates the space of the niche overlap and fitness differe
 
 # Lotka-Volterra competition model: Pros & Cons
 
-- **Pros**
+-   **Pros**
 
-  - Analytically tractable: The model is simple and can be solved analytically;
-  
-  - Graphical approach: Easy to do the graphical analysis based on the zero-net-growth isoclines;
-  
-  - Simple and clear outcomes of competition. For example, 5 outcomes of competition can be derived from two-species cases;
-  
-  - Phenomenological: The model can be used to describe the competition between two species in a simple way.
+    -   Analytically tractable: The model is simple and can be solved analytically;
 
-- **Cons**
+    -   Graphical approach: Easy to do the graphical analysis based on the zero-net-growth isoclines;
 
-  - Linear competitive effects: higher order interactions are ignored;
-  
-  - No physical meaning to parameters: The parameters in the model have no physical meaning;
-  
-  - How does competitive outcome depend on environmental gradients? The analysis relies on constant parameters. Thus, the model is not suitable for studying the competition along environmental gradients;
-  
-  - Curse of dimensionality: The model and the analysis are not suitable for studying the competition among more than two species.
-  
-  - How are parameters related / constrained? The model does not provide any information on how the parameters are related or constrained.
+    -   Simple and clear outcomes of competition. For example, 5 outcomes of competition can be derived from two-species cases;
 
+    -   Phenomenological: The model can be used to describe the competition between two species in a simple way.
 
+-   **Cons**
+
+    -   Linear competitive effects: higher order interactions are ignored;
+
+    -   No physical meaning to parameters: The parameters in the model have no physical meaning;
+
+    -   How does competitive outcome depend on environmental gradients? The analysis relies on constant parameters. Thus, the model is not suitable for studying the competition along environmental gradients;
+
+    -   Curse of dimensionality: The model and the analysis are not suitable for studying the competition among more than two species.
+
+    -   How are parameters related / constrained? The model does not provide any information on how the parameters are related or constrained.
 
 # References
-Barabás G, D’Andrea R, Stump SM (2018) Chesson’s coexistence theory. Ecological Monographs 88: 277–
-303.
 
-Chesson P (2000) Mechanisms of maintenance of species diversity. Annual Review of Ecology, Evolution,
-and Systematics 31: 343–366
+Barabás G, D'Andrea R, Stump SM (2018) Chesson's coexistence theory. Ecological Monographs 88: 277-- 303.
 
-Chesson P (2020) Species coexistence. In: Theoretical Ecology. Oxford University Press, pp 5–27
-Gause GF, Witt AA (1935) Behavior of mixed populations and the problem of natural selection. American
-Naturalist 69: 596–609
+Chesson P (2000) Mechanisms of maintenance of species diversity. Annual Review of Ecology, Evolution, and Systematics 31: 343--366
 
-Grainger TN, Levine JM, Gilbert B (2019) The invasion criterion: a common currency for ecological
-research. Trends in Ecology & Evolution 34: 925–935.
+Chesson P (2020) Species coexistence. In: Theoretical Ecology. Oxford University Press, pp 5--27 Gause GF, Witt AA (1935) Behavior of mixed populations and the problem of natural selection. American Naturalist 69: 596--609
+
+Grainger TN, Levine JM, Gilbert B (2019) The invasion criterion: a common currency for ecological research. Trends in Ecology & Evolution 34: 925--935.
 
 Kingsland S (1995) Modeling Nature: Episodes in the History of Population Ecology. 2nd edition.
 
-Mallet J (2012) The struggle for existence: how the notion of carrying capacity, K, obscures the links
-between demography, Darwinian evolution, and speciation. Evolutionary Ecology Research 14: 627–655
+Mallet J (2012) The struggle for existence: how the notion of carrying capacity, K, obscures the links between demography, Darwinian evolution, and speciation. Evolutionary Ecology Research 14: 627--655
 
-Metz JAJ, Nisbet RM, Geritz SAH (1992) How should we define “fitness” for general ecological scenarios.
-Trends in Ecology & Evolution 7: 198–202
+Metz JAJ, Nisbet RM, Geritz SAH (1992) How should we define "fitness" for general ecological scenarios. Trends in Ecology & Evolution 7: 198--202
