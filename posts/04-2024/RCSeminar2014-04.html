@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Christopher Klausmeier; Liang Xu">
+<meta name="dcterms.date" content="2024-02-15">
+
+<title>Resource Competition Seminar - 04 – The resource-consumer competition model</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content="../..">
+<script src="../../site_libs/quarto-contrib/shinylive-0.2.3/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../../site_libs/quarto-contrib/shinylive-0.2.3/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../../site_libs/quarto-contrib/shinylive-0.2.3/shinylive/shinylive.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Resource Competition Seminar</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/xl0418/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/liangxuhuang"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">04 – The resource-consumer competition model</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Lectures</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Christopher Klausmeier; Liang Xu </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 15, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#materials" id="toc-materials" class="nav-link active" data-scroll-target="#materials">Materials</a></li>
+  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model">Model</a>
+  <ul class="collapse">
+  <li><a href="#the-simulation" id="toc-the-simulation" class="nav-link" data-scroll-target="#the-simulation">The simulation</a></li>
+  </ul></li>
+  <li><a href="#the-zero-net-growth-isocline-zngi-analysis-of-a-two-species-two-resource-model" id="toc-the-zero-net-growth-isocline-zngi-analysis-of-a-two-species-two-resource-model" class="nav-link" data-scroll-target="#the-zero-net-growth-isocline-zngi-analysis-of-a-two-species-two-resource-model">The zero-net-growth-isocline (ZNGI) analysis of a two-species-two-resource model</a>
+  <ul class="collapse">
+  <li><a href="#the-essential-resource-model" id="toc-the-essential-resource-model" class="nav-link" data-scroll-target="#the-essential-resource-model">The essential resource model</a></li>
+  <li><a href="#the-substitutable-resource-model" id="toc-the-substitutable-resource-model" class="nav-link" data-scroll-target="#the-substitutable-resource-model">The substitutable resource model</a></li>
+  <li><a href="#the-zngi-analysis" id="toc-the-zngi-analysis" class="nav-link" data-scroll-target="#the-zngi-analysis">The ZNGI analysis</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<p>In this session, we discussed about the resource-consumer model.</p>
+<section id="materials" class="level1">
+<h1>Materials</h1>
+<p>The video record of the seminar can be found <a href="https://youtu.be/uC_A-Qfrqx0" target="_blank">HERE</a>.</p>
+<p>The Mathematica notebook is <a href="https://github.com/xl0418/ResourceCompetitionSeminarPosts-Docs/blob/main/04-2024/Docs/4%20-%20resource%20competition%20DONE.nb" target="_blank">HERE</a>.</p>
+</section>
+<section id="model" class="level1">
+<h1>Model</h1>
+<p>The two-species resource-consumer competition model is defined as</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{dN_1}{dt} &amp;=  \left(\mu_1 - m \right) N_1 \\
+\frac{dN_2}{dt} &amp;=  \left(\mu_2 - m \right) N_2 \\
+\frac{dR}{dt} &amp;=  a \left(R_{in}-R \right) - V_1 N_1 - V_2 N_2
+\end{aligned}
+\]</span></p>
+<p>where <span class="math inline">\(N_1\)</span>, <span class="math inline">\(N_2\)</span> are the population sizes of species 1 and 2, respectively. <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span> are the growth rates while <span class="math inline">\(V_1\)</span> and <span class="math inline">\(V_2\)</span> are the consumption rates. <span class="math inline">\(m\)</span> is the background mortality rate. For the dynamics of the resource, <span class="math inline">\(R_{in}\)</span> denotes for the inflow concentration and <span class="math inline">\(a\)</span> is the dilution rate.</p>
+<p>The growth rate often follows the functional form of Mechanis-Menten-Monod:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mu:=\mu_{max}\frac{R}{R+K}
+\end{aligned}
+\]</span></p>
+<p>where <span class="math inline">\(\mu_{max}\)</span> is the maximum growth rate when the resource is adequate. <span class="math inline">\(K\)</span> is the half-saturation rate. Therefore, the growth rate when the resoruce is at low density is given by the slope of this function at low <span class="math inline">\(R\)</span></p>
+<p><span class="math display">\[
+\frac{\mu_{max}}{K}
+\]</span></p>
+<p>Given the nonlinearity of the growth rate, the curves may cross. So, imagine a situation where Species 1 has a larger growth rate when the resource is sufficient while Species 2 has a higher growth rate when the resource is scarce,</p>
+<p><span class="math display">\[
+\mu_{1,max}&gt;\mu_{2,max};\frac{\mu_{1,max}}{K_1}&lt;\frac{\mu_{2,max}}{K_2}
+\]</span></p>
+<p><strong>which species</strong> will win?</p>
+<section id="the-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="the-simulation">The simulation</h2>
+<p>Try on this interactive plot and see which species would win.</p>
+<pre class="shinylive-r" data-engine="r"><code>#| standalone: true
+#| viewerHeight: 800
+#| viewerWidth: 900
+library(shiny)
+library(bslib)
+library(plotly)
+library(Matrix)
+
+growth_rate &lt;- function(mu_max,k, R){
+  return(mu_max * R / (R + k))
+}
+
+
+Sim_rc &lt;- function(tt, mu11, mu12, mu21, mu22,
+                   k11,k12,k21,k22,
+                   v11, v12, v21, v22,
+                   r1in, r2in,
+                   N10, N20, R10, R20,
+                   m,
+                   mode) {
+  N1 &lt;- c(N10)
+  N2 &lt;- c(N20)
+  R1 &lt;- c(R10)
+  R2 &lt;- c(R20)
+  for(ti in 1:tt){
+    temp_N1 &lt;- N1[ti]
+    temp_N2 &lt;- N2[ti]
+    temp_R1 &lt;- R1[ti]
+    temp_R2 &lt;- R2[ti]
+    for(tii in 1:100){
+      if(mode == "ess"){
+        mu1 &lt;- min(growth_rate(mu11, k11, temp_R1), growth_rate(mu12, k12, temp_R2))
+        mu2 &lt;- min(growth_rate(mu21, k21, temp_R1), growth_rate(mu22, k22, temp_R2))
+        c11 &lt;- min(growth_rate(v11, k11, temp_R1), growth_rate(v12, k12, temp_R2))
+        c12 &lt;- min(growth_rate(v11, k11, temp_R1), growth_rate(v12, k12, temp_R2))
+        c21 &lt;- min(growth_rate(v21, k21, temp_R1), growth_rate(v22, k22, temp_R2))
+        c22 &lt;- min(growth_rate(v21, k21, temp_R1), growth_rate(v22, k22, temp_R2))
+        
+      } else {
+        mu1 &lt;- growth_rate(mu11, k11, temp_R1) + growth_rate(mu12, k12, temp_R2)
+        mu2 &lt;- growth_rate(mu21, k21, temp_R1) + growth_rate(mu22, k22, temp_R2)
+        c11 &lt;- v11 * temp_R1
+        c12 &lt;- v12 * temp_R2
+        c21 &lt;- v21 * temp_R1
+        c22 &lt;- v22 * temp_R2
+      }
+      
+      dN1 &lt;- (mu1 - m) * temp_N1 / 100
+      dN2 &lt;- (mu2 - m) * temp_N2 / 100
+      dR1 &lt;- ((r1in - temp_R1) - c11 * temp_N1 - c21 * temp_N2) / 100
+      dR2 &lt;- ((r2in - temp_R2) - c12 * temp_N1 - c22 * temp_N2) / 100
+      
+      temp_N1 &lt;- max(temp_N1 + dN1, 0)
+      temp_N2 &lt;- max(temp_N2 + dN2, 0)
+      temp_R1 &lt;- max(temp_R1 + dR1, 0)
+      temp_R2 &lt;- max(temp_R2 + dR2, 0)
+      
+    }
+    
+    N1 &lt;- c(N1, temp_N1)
+    N2 &lt;- c(N2, temp_N2)
+    
+    R1 &lt;- c(R1, temp_R1)
+    R2 &lt;- c(R2, temp_R2)
+  }
+  return(data.frame(N1 = N1, N2 = N2, R1 = R1, R2 = R2, cc = 1:(tt+1)))
+  
+}
+
+
+# Define UI for app that draws a histogram ----
+# Define UI for app that draws a histogram ----
+ui &lt;- fluidPage(
+  headerPanel(''),
+  
+  fluidRow(
+    column(12, 
+           textOutput("text"),
+           tags$head(tags$style("#text{color: black;
+                                 font-size: 30px;
+                                 font-style: italic;
+                                 }"
+           )
+           ),
+           plotlyOutput("plot1", width=700, height=250),
+           plotlyOutput("plot2", width=700, height=250)
+    )
+  ), 
+  
+  fluidRow(
+    column(4, 
+           div(style="height: 80px;",sliderInput('mu1max', HTML("&amp;mu;&lt;sub&gt;1,max&lt;/sub&gt;"), 1.4, min = 0.1, max = 2)),
+           div(style="height: 80px;",sliderInput('mu2max', HTML("&amp;mu;&lt;sub&gt;2,max&lt;/sub&gt;"), 1.1, min = 0.1, max = 2))
+    ),
+    column(4,
+           div(style="height: 80px;", sliderInput('k1', HTML("K&lt;sub&gt;1&lt;/sub&gt;"), 2.5, min = 0.1, max = 3)),
+           div(style="height: 80px;",sliderInput('k2', HTML("K&lt;sub&gt;2&lt;/sub&gt;"), 0.4, min = 0.1, max = 3))
+    ),
+    column(4,
+           div(style="height: 80px;", sliderInput('m', "m", 0.4, min = 0.01, max = 1)),
+    )
+  )
+  
+  
+)
+
+server &lt;- function(input, output, session) {
+  output$text &lt;- renderText({
+    "Mechanis-Menten-Monod growth"
+  })
+  
+  
+  
+  
+  # sim lv model
+  sim_result &lt;- reactive({
+    Sim_rc(100, input$mu1max, 0, input$mu2max, 0,
+           input$k1,0, input$k2, 0,
+           3 * input$mu1max,  0, 3 * input$mu2max,0,
+           10, 10, 0.1, 0.1, 1, 1, input$m,
+           "sub")
+  })
+  # browser()
+  
+  output$plot1 &lt;- renderPlotly({
+      R &lt;- seq(0, 10, 0.01)
+      
+      mu1 &lt;-reactive({
+        growth_rate(input$mu1max, input$k1, R)
+      })
+      
+      
+      mu2 &lt;-reactive({
+        growth_rate(input$mu2max, input$k2, R)
+      })
+      
+      gr &lt;- data.frame(re = R, mu1 = mu1(), mu2 = mu2())
+      # browser()
+      p &lt;- plot_ly(data = gr) %&gt;%
+        add_trace(x = ~re, y = ~mu1, type = 'scatter', mode = 'lines', name = 'Species 1') %&gt;%
+        add_trace(x = ~re, y = ~mu2, type = 'scatter', mode = 'lines', name = 'Species 2')
+        
+      p &lt;- p %&gt;%
+        add_segments(y=input$m, yend = input$m, x = 0, xend=10, type = 'scatter', mode = 'lines', name = "m")
+   
+      # xlim
+      # p &lt;- p %&gt;% layout(xaxis = list(range = c(0, 2)),
+      #                   yaxis = list(range = c(0, 2)))
+      
+      
+      
+      
+      p
+  })
+  
+  output$plot2 &lt;- renderPlotly({
+    
+    # browser()
+    p &lt;- plot_ly(data = sim_result()) %&gt;%
+      add_trace(x = ~cc, y = ~N1, type = 'scatter', mode = 'lines', name = 'Species 1') %&gt;%
+      add_trace(x = ~cc, y = ~N2, type = 'scatter', mode = 'lines', name = 'Species 2')
+    
+
+    # xlim
+    # p &lt;- p %&gt;% layout(xaxis = list(range = c(0, 2)),
+    #                   yaxis = list(range = c(0, 2)))
+    
+    
+    
+    
+    p
+  })
+
+}
+# Create Shiny app ----
+shinyApp(ui = ui, server = server)</code></pre>
+</section>
+</section>
+<section id="the-zero-net-growth-isocline-zngi-analysis-of-a-two-species-two-resource-model" class="level1">
+<h1>The zero-net-growth-isocline (ZNGI) analysis of a two-species-two-resource model</h1>
+<p>The ZNGI analysis we talked in the previous lecture on the Lotka-Volterra model can also infer the outcome of the competition on the resource-consumer model. For simplicity, we just assume that the growth rate is linear.</p>
+<p>The following figure compares the ZNGIs analysis of the essential and substitutable resource models (Vincent et al.&nbsp;1996).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/ZNGIs_ess_sub.png" title="ZNGIs" class="img-fluid figure-img"></p>
+<figcaption>ZNGIs of essential and substitutable models</figcaption>
+</figure>
+</div>
+<section id="the-essential-resource-model" class="level2">
+<h2 class="anchored" data-anchor-id="the-essential-resource-model">The essential resource model</h2>
+<p>The two-species-two-essential-resource model is given by</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{dN_1}{dt} &amp;=  \left( \min(\mu_{11}R_1, \mu_{12}R_2) - m \right) N_1\\
+\frac{dN_2}{dt} &amp;=  \left( \min(\mu_{21}R_1, \mu_{22}R_2) - m \right) N_2\\
+\frac{dR_1}{dt} &amp;=  a \left(R_{1,in}-R_1 \right) - \min(V_{11}R_1, V_{12}R_2) N_1 - \min(V_{21}R_1, V_{22}R_2) N_2 \\
+\frac{dR_2}{dt} &amp;=  a \left(R_{2,in}-R_2 \right) - \min(V_{11}R_1, V_{12}R_2) N_1 - \min(V_{21}R_1, V_{22}R_2) N_2 \\
+\end{aligned}
+\]</span></p>
+</section>
+<section id="the-substitutable-resource-model" class="level2">
+<h2 class="anchored" data-anchor-id="the-substitutable-resource-model">The substitutable resource model</h2>
+<p>The two-species-two-substitutable-resource model is given by</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{dN_1}{dt} &amp;=  \left( \mu_{11}R_1 + \mu_{12}R_2 - m \right) N_1\\
+\frac{dN_2}{dt} &amp;=  \left( \mu_{21}R_1 + \mu_{22}R_2 - m \right) N_2\\
+\frac{dR_1}{dt} &amp;=  a \left(R_{1,in}-R_1 \right) - V_{11}R_1 N_1 - V_{21}R_1 N_2 \\
+\frac{dR_2}{dt} &amp;=  a \left(R_{2,in}-R_2 \right) - V_{12}R_2 N_1 - V_{22}R_2 N_2 \\
+\end{aligned}
+\]</span></p>
+</section>
+<section id="the-zngi-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="the-zngi-analysis">The ZNGI analysis</h2>
+<p>We take the essential resource competition model as an example. The ZNGIs of the two species are given by</p>
+<p><span class="math display">\[
+\begin{aligned}
+\min(\mu_{11}R_1, \mu_{12}R_2) - m  &amp;= 0\\
+\min(\mu_{21}R_1, \mu_{22}R_2) - m  &amp;= 0
+\end{aligned}
+\]</span></p>
+<p>which gives the two “L” shaped ZNGIs in the plot.</p>
+<p>If the two ZNGIs cross, the crossing point is a potential coexistence destination. Whether it is a stable equilibrium relies on the impact vectors and the resource supply rates. See <a href="https://xl0418.github.io/ResourceCompetitionSeminar/posts/02-2024/RCSeminar2014.html" target="_blank">Lecture 2</a> for details.</p>
+<pre class="shinylive-r" data-engine="r"><code>#| standalone: true
+#| viewerHeight: 800
+#| viewerWidth: 1000
+
+
+
+Sim_rc_ess &lt;- function(tt, mu11, mu12, mu21, mu22,
+                       q11, q12, q21, q22,
+                       r1in, r2in,
+                       N10, N20, R10, R20,
+                       m) {
+  N1 &lt;- c(N10)
+  N2 &lt;- c(N20)
+  R1 &lt;- c(R10)
+  R2 &lt;- c(R20)
+  for(ti in 1:tt){
+    temp_N1 &lt;- N1[ti]
+    temp_N2 &lt;- N2[ti]
+    temp_R1 &lt;- R1[ti]
+    temp_R2 &lt;- R2[ti]
+    for(tii in 1:100){
+      
+      mu1 &lt;- min(mu11 * temp_R1, mu12 * temp_R2)
+      mu2 &lt;- min(mu21 * temp_R1, mu22 * temp_R2)
+      
+      
+      dN1 &lt;- (mu1  - m) * temp_N1 / 100
+      dN2 &lt;- (mu2  - m) * temp_N2 / 100
+      dR1 &lt;- ((r1in - temp_R1) - q11 * mu1 * temp_N1 - q21 * mu2 * temp_N2) / 100
+      dR2 &lt;- ((r2in - temp_R2) - q12 * mu1 * temp_N1 - q22 * mu2 * temp_N2) / 100
+      
+      temp_N1 &lt;- max(temp_N1 + dN1, 0)
+      temp_N2 &lt;- max(temp_N2 + dN2, 0)
+      temp_R1 &lt;- max(temp_R1 + dR1, 0)
+      temp_R2 &lt;- max(temp_R2 + dR2, 0)
+      
+    }
+    
+    N1 &lt;- c(N1, temp_N1)
+    N2 &lt;- c(N2, temp_N2)
+    
+    R1 &lt;- c(R1, temp_R1)
+    R2 &lt;- c(R2, temp_R2)
+  }
+  return(data.frame(N1 = N1, N2 = N2, R1 = R1, R2 = R2, cc = 1:(tt+1)))
+  
+}
+
+
+Sim_rc_sub &lt;- function(tt, mu11, mu12, mu21, mu22,
+                       v11, v12, v21, v22,
+                       r1in, r2in,
+                       N10, N20, R10, R20,
+                       m) {
+  N1 &lt;- c(N10)
+  N2 &lt;- c(N20)
+  R1 &lt;- c(R10)
+  R2 &lt;- c(R20)
+  for(ti in 1:tt){
+    temp_N1 &lt;- N1[ti]
+    temp_N2 &lt;- N2[ti]
+    temp_R1 &lt;- R1[ti]
+    temp_R2 &lt;- R2[ti]
+    for(tii in 1:100){
+      
+      mu1 &lt;- mu11 * temp_R1 + mu12 * temp_R2
+      mu2 &lt;- mu21 * temp_R1 + mu22 * temp_R2
+      
+      
+      dN1 &lt;- (mu1  - m) * temp_N1 / 100
+      dN2 &lt;- (mu2  - m) * temp_N2 / 100
+      dR1 &lt;- ((r1in - temp_R1) - v11 * temp_R1 * temp_N1 - v21 * temp_R1 * temp_N2) / 100
+      dR2 &lt;- ((r2in - temp_R2) - v12 * temp_R2 * temp_N1 - v22 * temp_R2 * temp_N2) / 100
+      
+      temp_N1 &lt;- max(temp_N1 + dN1, 0)
+      temp_N2 &lt;- max(temp_N2 + dN2, 0)
+      temp_R1 &lt;- max(temp_R1 + dR1, 0)
+      temp_R2 &lt;- max(temp_R2 + dR2, 0)
+      
+    }
+    
+    N1 &lt;- c(N1, temp_N1)
+    N2 &lt;- c(N2, temp_N2)
+    
+    R1 &lt;- c(R1, temp_R1)
+    R2 &lt;- c(R2, temp_R2)
+  }
+  return(data.frame(N1 = N1, N2 = N2, R1 = R1, R2 = R2, cc = 1:(tt+1)))
+  
+}
+
+
+# Define UI for app that draws a histogram ----
+# Define UI for app that draws a histogram ----
+ui &lt;- fluidPage(
+  fluidRow(
+    
+    tabsetPanel(id = "tabset",
+                tabPanel("Essential",
+                         fluidRow(
+                           column(4, 
+                                  div(style="height: 80px;",sliderInput('r1intab1', 'Supply R1', 1.4, min = 0.1, max = 1.8)),
+                                  div(style="height: 80px;",sliderInput('r2intab1', 'Supply R2', 1.1, min = 0.1, max = 1.8))
+                           ),
+                           column(4,
+                                  div(style="height: 80px;", sliderInput('mu11tab1', HTML("&amp;mu;&lt;sub&gt;11&lt;/sub&gt;"), 1.5, min = 0.1, max = 2)),
+                                  div(style="height: 80px;",sliderInput('mu12tab1', HTML("&amp;mu;&lt;sub&gt;12&lt;/sub&gt;"), 0.4, min = 0.1, max = 2))
+                           ),
+                           column(4,
+                                  div(style="height: 80px;",sliderInput('mu21tab1', HTML("&amp;mu;&lt;sub&gt;21&lt;/sub&gt;"), 0.4, min = 0.1, max = 2)),
+                                  div(style="height: 80px;",sliderInput('mu22tab1', HTML("&amp;mu;&lt;sub&gt;22&lt;/sub&gt;"), 1.25, min = 0.1, max = 2))
+                           )
+                         ),
+                         
+                         fluidRow(
+                           column(4,
+                                  div(style="height: 80px;", sliderInput('mtab1', HTML("m"), 0.2, min = 0.1, max = 1))
+                           ),
+                           column(4,
+                                  div(style="height: 80px;", sliderInput('q11', HTML("Q&lt;sub&gt;11&lt;/sub&gt;"), 1.5, min = 0.1, max = 3)),
+                                  div(style="height: 80px;",sliderInput('q12', HTML("Q&lt;sub&gt;12&lt;/sub&gt;"), 2.6, min = 0.1, max = 3))
+                           ),
+                           column(4,
+                                  div(style="height: 80px;",sliderInput('q21', HTML("Q&lt;sub&gt;21&lt;/sub&gt;"), 2.5, min = 0.1, max = 3)),
+                                  div(style="height: 80px;",sliderInput('q22', HTML("Q&lt;sub&gt;22&lt;/sub&gt;"), 1.1, min = 0.1, max = 3))
+                           )
+                         )
+                ),
+                tabPanel("Substitutable",
+                         fluidRow(
+                           column(4, 
+                                  div(style="height: 80px;",sliderInput('r1intab2', 'Supply R1', 0.84, min = 0.1, max = 1.8)),
+                                  div(style="height: 80px;",sliderInput('r2intab2', 'Supply R2', 1.1, min = 0.1, max = 1.8))
+                           ),
+                           column(4,
+                                  div(style="height: 80px;", sliderInput('mu11tab2', HTML("&amp;mu;&lt;sub&gt;11&lt;/sub&gt;"), 1.5, min = 0.1, max = 2)),
+                                  div(style="height: 80px;",sliderInput('mu12tab2', HTML("&amp;mu;&lt;sub&gt;12&lt;/sub&gt;"), 0.4, min = 0.1, max = 2))
+                           ),
+                           column(4,
+                                  div(style="height: 80px;",sliderInput('mu21tab2', HTML("&amp;mu;&lt;sub&gt;21&lt;/sub&gt;"), 0.4, min = 0.1, max = 2)),
+                                  div(style="height: 80px;",sliderInput('mu22tab2', HTML("&amp;mu;&lt;sub&gt;22&lt;/sub&gt;"), 1.25, min = 0.1, max = 2))
+                           )
+                         ),
+                         
+                         fluidRow(
+                           column(4,
+                                  div(style="height: 80px;", sliderInput('mtab2', HTML("m"), 0.5, min = 0.1, max = 1))
+                           ),
+                           column(4,
+                                  div(style="height: 80px;", sliderInput('v11', HTML("V&lt;sub&gt;11&lt;/sub&gt;"), 2.5, min = 0.1, max = 3)),
+                                  div(style="height: 80px;",sliderInput('v12', HTML("V&lt;sub&gt;12&lt;/sub&gt;"), 1.6, min = 0.1, max = 3))
+                           ),
+                           column(4,
+                                  div(style="height: 80px;",sliderInput('v21', HTML("V&lt;sub&gt;21&lt;/sub&gt;"), 1, min = 0.1, max = 3)),
+                                  div(style="height: 80px;",sliderInput('v22', HTML("V&lt;sub&gt;22&lt;/sub&gt;"), 2.1, min = 0.1, max = 3))
+                           )
+                         )
+                )
+    )),
+  
+  fluidRow(
+    column(12, 
+           plotlyOutput("plot", width=700, height = 400)
+    ))
+  
+)
+
+server &lt;- function(input, output, session) {
+
+  
+  
+  output$plot &lt;- renderPlotly({
+    
+      if (input$tabset == "Essential") {
+        
+        # sim lv model
+        sim_result_ess &lt;- reactive({
+          Sim_rc_ess(100, input$mu11tab1, input$mu12tab1, input$mu21tab1, input$mu22tab1,
+                     input$q11, input$q12, input$q21, input$q22,
+                     input$r1intab1, input$r2intab1, 0.1, 0.1, input$r1intab1, input$r2intab1, input$mtab1)
+        })
+        
+        R1_1 &lt;-reactive({
+          input$mtab1 / input$mu11tab1 
+        })
+        
+        R2_1 &lt;-reactive({
+          input$mtab1 / input$mu21tab1 
+        })
+        
+        R1_2 &lt;-reactive({
+          input$mtab1 / input$mu12tab1 
+        })
+        
+        
+        R2_2 &lt;- reactive({
+          input$mtab1 / input$mu22tab1
+        })
+        
+        
+        
+        
+        R_star &lt;- data.frame(R1_star = c(rep(R1_1(), 100), seq(R1_1(), 10, length.out=100)),
+                             yrange1 = c(seq(R1_2(), 10, length.out=100), rep(R1_2(), 100)),
+                             R2_star = c(rep(R2_1(), 100), seq(R2_1(), 10, length.out=100)),
+                             yrange2 = c(seq(R2_2(), 10, length.out=100), rep(R2_2(), 100)))
+        
+        
+        p &lt;- plot_ly(data = R_star) %&gt;%
+          add_trace(x = ~R1_star, y = ~yrange1, type = 'scatter', mode = 'lines', name = 'dN1/dt = 0', line = list(color="#1c3144", width = 3)) %&gt;%
+          add_trace(x = ~R2_star, y = ~yrange2, type = 'scatter', mode = 'lines', name = 'dN2/dt = 0', line = list(color = '#d00000', width = 3))
+        
+        if((R1_1() - R2_1()) * (R1_2() - R2_2()) &lt; 0){
+          R_eq_x &lt;- max(R1_1(), R2_1())
+          R_eq_y &lt;- max(R1_2(), R2_2())
+          
+          arrows1 &lt;- reactive({data.frame(start_x = c(R_eq_x),
+                                         start_y = c(R_eq_y),
+                                         end_x = c(R_eq_x * 0.7),
+                                         end_y = c(R_eq_y - (R_eq_x - R_eq_x * 0.7) * input$q12 * R_eq_y / (input$q11 * R_eq_x ) ))})
+          
+          arrows2 &lt;- reactive({data.frame(start_x = c(R_eq_x),
+                                          start_y = c(R_eq_y),
+                                          end_x = c(R_eq_x * 0.7),
+                                          end_y = c(R_eq_y - (R_eq_x - R_eq_x * 0.7) * input$q22 * R_eq_y / (input$q21  * R_eq_x) ))})
+          
+          arrows1expend &lt;- reactive({data.frame(x = seq(R_eq_x, 4, length.out = 100),
+                                                y = c(R_eq_y - (R_eq_x - seq(R_eq_x, 4, length.out = 100)) * input$q12 * R_eq_y / (input$q11 * R_eq_x )))})
+          
+          arrows2expend &lt;- reactive({data.frame(x = seq(R_eq_x, 4, length.out = 100),
+                                                y = c(R_eq_y - (R_eq_x - seq(R_eq_x, 4, length.out = 100)) * input$q22 * R_eq_y / (input$q21  * R_eq_x)))})
+          
+          
+          p &lt;- p %&gt;% add_trace(x = R_eq_x, y = R_eq_y, type = 'scatter', mode = 'markers',
+                               name = 'Equilibrium', marker = list(color="black", size = 10)) %&gt;%
+            add_trace(x = ~x, y = ~y, type = 'scatter', mode = 'lines', name = 'Impact 1', line = list(color="#1c3144", width = 3, dash = 'dash'),
+                      data = arrows1expend()) %&gt;%
+            add_trace(x = ~x, y = ~y, type = 'scatter', mode = 'lines', name = 'Impact 2', line = list(color = '#d00000', width = 3, dash = 'dash'),
+                      data = arrows2expend()) %&gt;%
+            add_annotations(x = ~end_x,
+                            y = ~end_y,
+                            xref = "x", yref = "y",
+                            axref = "x", ayref = "y",
+                            text = "",
+                            showarrow = T,
+                            ax = ~start_x,
+                            ay = ~start_y,
+                            arrowcolor='#1c3144',
+                            data = arrows1()) %&gt;%
+            add_annotations(x = ~end_x,
+                            y = ~end_y,
+                            xref = "x", yref = "y",
+                            axref = "x", ayref = "y",
+                            text = "",
+                            showarrow = T,
+                            ax = ~start_x,
+                            ay = ~start_y,
+                            arrowcolor='#d00000',
+                            data = arrows2())
+          p &lt;- p %&gt;% add_trace(x =~R1, y =~R2, type = 'scatter', mode = 'lines+markers', name = 'Trajectory', 
+                               marker = list(color = ~cc, size =10), line = list(color = 'grey', width = 4), data = sim_result_ess())
+        }
+        
+      } else {
+        
+        # sim lv model
+        sim_result_sub &lt;- reactive({
+          Sim_rc_sub(100, input$mu11tab2, input$mu12tab2, input$mu21tab2, input$mu22tab2,
+                     input$v11, input$v12, input$v21, input$v22,
+                     input$r1intab2, input$r2intab2, 0.1, 0.1, input$r1intab2, input$r2intab2, input$mtab2)
+        })
+        
+        R1 &lt;- seq(0, 20, 0.01)
+        
+        R2_1 &lt;-reactive({
+          (input$mtab2 - input$mu11tab2 * R1) / input$mu12tab2 
+        })
+        
+        
+        R2_2 &lt;- reactive({
+          (input$mtab2 - input$mu21tab2 * R1) / input$mu22tab2 
+        })
+        
+        R_star &lt;- data.frame(R1 = R1, R2_1 = R2_1(), R2_2 = R2_2())
+        
+        # solve the linear equations
+        A &lt;- matrix(c(input$mu11tab2, input$mu21tab2, input$mu12tab2, input$mu22tab2), 2, 2)
+        b &lt;- c(input$mtab2, input$mtab2)
+        sol &lt;- solve(A, b)
+        R_eq_x &lt;- sol[1]
+        R_eq_y &lt;- sol[2]
+        
+        p &lt;- plot_ly(data = R_star) %&gt;%
+          add_trace(x = ~R1, y = ~R2_1, type = 'scatter', mode = 'lines', name = 'dN1/dt = 0', line = list(color="#1c3144", width = 3)) %&gt;%
+          add_trace(x = ~R1, y = ~R2_2, type = 'scatter', mode = 'lines', name = 'dN2/dt = 0', line = list(color="#d00000", width = 3))
+        
+        if(sol[1]&gt;0 &amp; sol[2]&gt;0){
+          arrows1 &lt;- reactive({data.frame(start_x = c(R_eq_x),
+                                          start_y = c(R_eq_y),
+                                          end_x = c(R_eq_x * 0.7),
+                                          end_y = c(R_eq_y - (R_eq_x - R_eq_x * 0.7) * input$v12 * R_eq_y / (input$v11 * R_eq_x) ))})
+          
+          arrows2 &lt;- reactive({data.frame(start_x = c(R_eq_x),
+                                          start_y = c(R_eq_y),
+                                          end_x = c(R_eq_x * 0.7),
+                                          end_y = c(R_eq_y - (R_eq_x - R_eq_x * 0.7) * input$v22 * R_eq_y / (input$v21 * R_eq_x)))})
+          
+          
+          arrows1expend &lt;- reactive({data.frame(x = seq(R_eq_x, 4, length.out = 100),
+                                                y = c(R_eq_y - (R_eq_x - seq(R_eq_x, 4, length.out = 100)) * input$v12 * R_eq_y / (input$v11 * R_eq_x)))})
+          
+          arrows2expend &lt;- reactive({data.frame(x = seq(R_eq_x, 4, length.out = 100),
+                                                y = c(R_eq_y - (R_eq_x - seq(R_eq_x, 4, length.out = 100)) * input$v22 * R_eq_y / (input$v21 * R_eq_x)))})
+          
+          
+          p &lt;- p %&gt;% add_trace(x = R_eq_x, y = R_eq_y, type = 'scatter', mode = 'markers',
+                               name = 'Equilibrium', marker = list(color="black", size = 10)) %&gt;%
+            add_trace(x = ~x, y = ~y, type = 'scatter', mode = 'lines', name = 'Impact 1', line = list(color="#1c3144", width = 3, dash = 'dash'),
+                      data = arrows1expend()) %&gt;%
+            add_trace(x = ~x, y = ~y, type = 'scatter', mode = 'lines', name = 'Impact 2', line = list(color = '#d00000', width = 3, dash = 'dash'),
+                      data = arrows2expend()) %&gt;%
+            add_annotations(x = ~end_x,
+                            y = ~end_y,
+                            xref = "x", yref = "y",
+                            axref = "x", ayref = "y",
+                            text = "",
+                            showarrow = T,
+                            ax = ~start_x,
+                            ay = ~start_y,
+                            arrowcolor='#1c3144',
+                            data = arrows1()) %&gt;%
+            add_annotations(x = ~end_x,
+                            y = ~end_y,
+                            xref = "x", yref = "y",
+                            axref = "x", ayref = "y",
+                            text = "",
+                            showarrow = T,
+                            ax = ~start_x,
+                            ay = ~start_y,
+                            arrowcolor='#d00000',
+                            data = arrows2())
+          
+          p &lt;- p %&gt;% add_trace(x =~R1, y =~R2, type = 'scatter', mode = 'lines+markers', name = 'Trajectory', 
+                               marker = list(color =~cc, size =10), line = list(color = 'grey', width = 4), data = sim_result_sub())
+        }
+      }
+
+      
+      
+      # xlim
+      p &lt;- p %&gt;% layout(xaxis = list(range = c(0, 2)),
+                        yaxis = list(range = c(0, 2)))
+      
+      # x label
+      p &lt;- p %&gt;% layout(xaxis = list(title = "R1"), yaxis = list(title = "R2"))
+      
+      
+      
+      
+      p
+      
+    })
+  
+}
+# Create Shiny app ----
+shinyApp(ui = ui, server = server)</code></pre>
+<p>For the substitutable resource model, you can play with the model by switching the tab to “Substitutable”.</p>
+</section>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<p>Vincent, T. L. S., D. Scheel, J. S. Brown, and T. L. Vincent. “Trade-Offs and Coexistence in Consumer-Resource Models: It All Depends on What and Where You Eat.” The American Naturalist 148, no. 6 (1996): 1038–58. http://www.jstor.org/stable/2463561.</p>
+<p>Chase, Jonathan M., and Mathew A. Leibold. Ecological Niches: Linking Classical and Contemporary Approaches. University of Chicago Press, 21 Feb 2013, 2003. doi:10.7208/chicago/9780226101811.001.0001. https://doi.org/10.7208/chicago/9780226101811.001.0001.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
