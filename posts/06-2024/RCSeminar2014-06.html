@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Christopher Klausmeier; Liang Xu">
+<meta name="dcterms.date" content="2024-02-29">
 
-<title>Resource Competition Seminar - Resource Competition Seminar 2024</title>
+<title>Resource Competition Seminar - 06 – Variable environment and the storage (Droop) model</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +25,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,35 +68,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -128,7 +99,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -138,7 +109,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Resource Competition Seminar</span>
     </a>
   </div>
@@ -149,7 +120,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -173,14 +144,29 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page-left">
-      <h1 class="title">Resource Competition Seminar 2024</h1>
-                      </div>
+      <h1 class="title">06 – Variable environment and the storage (Droop) model</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Paper Discussion</div>
+              </div>
+                  </div>
   </div>
     
   
   <div class="quarto-title-meta column-page-left">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Christopher Klausmeier; Liang Xu </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 29, 2024</p>
+      </div>
+    </div>
     
       
     </div>
@@ -190,8 +176,16 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Lectures">Lectures <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Paper Discussion">Paper Discussion <span class="quarto-category-count">(3)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#materials" id="toc-materials" class="nav-link active" data-scroll-target="#materials">Materials</a></li>
+  <li><a href="#too-hectic-to-update--" id="toc-too-hectic-to-update--" class="nav-link" data-scroll-target="#too-hectic-to-update--">Too hectic to update :-(</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -199,182 +193,26 @@ window.Quarto = {
 
 
 
+<p>In this session, we discussed three papers that argued whether the predictions from the resource-ratio theory (equivalently, the resource-consumer theory, the <span class="math inline">\(R^*\)</span> theory) have been adequately evidenced.</p>
+<section id="materials" class="level1">
+<h1>Materials</h1>
+<p>The video record of the seminar can be found <a href="https://www.youtube.com/watch?v=IQf16WzptkM" target="_blank">HERE</a>.</p>
+<p>The slides can be found <a href="https://github.com/xl0418/ResourceCompetitionSeminarPosts-Docs/blob/main/06-2024/Docs/6%20-%20variable%20environments%201.pptx" target="_blank">HERE</a>.</p>
+<p>The Mathematica notebook is <a href="https://github.com/xl0418/ResourceCompetitionSeminarPosts-Docs/blob/main/06-2024/Docs/6%20-%20variable%20environments%201.nb" target="_blank">HERE</a>.</p>
+</section>
+<section id="too-hectic-to-update--" class="level1">
+<h1>Too hectic to update :-(</h1>
+<p>Just updated the materials. Will update the rest later! I promise!</p>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<p>Bieg, Carling, and David Vasseur. “Interactions between Temperature and Nutrients Determine the Population Dynamics of Primary Producers.” Ecology Letters 27, no. 1 (2024): e14363. https://doi.org/https://doi.org/10.1111/ele.14363. https://onlinelibrary.wiley.com/doi/abs/10.1111/ele.14363.</p>
+<p>Klausmeier, Christopher A., Elena Litchman, and Simon A. Levin. “Phytoplankton Growth and Stoichiometry under Multiple Nutrient Limitation.” Limnology and Oceanography 49, no. 4part2 (2004): 1463-70. https://doi.org/https://doi.org/10.4319/lo.2004.49.4_part_2.1463. https://aslopubs.onlinelibrary.wiley.com/doi/abs/10.4319/lo.2004.49.4_part_2.1463.</p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Paper Discussion" data-listing-date-sort="1709193600000" data-listing-file-modified-sort="1709684828986" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="112">
-<div class="thumbnail">
-<p><a href="./posts/06-2024/RCSeminar2014-06.html" class="no-external"></a></p><a href="./posts/06-2024/RCSeminar2014-06.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/06-2024/RCSeminar2014-06.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/06-2024/RCSeminar2014-06.html" class="no-external">06 – Variable environment and the storage (Droop) model</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/06-2024/RCSeminar2014-06.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Paper Discussion'); return false;">
-Paper Discussion
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/06-2024/RCSeminar2014-06.html" class="no-external">In this session, we discussed three papers that argued whether the predictions from the resource-ratio theory (equivalently, the resource-consumer theory, the <span class="math inline">\(R^*\)</span> theory)…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/06-2024/RCSeminar2014-06.html" class="no-external">
-<div class="listing-date">
-Feb 29, 2024
-</div>
-<div class="listing-author">
-Christopher Klausmeier; Liang Xu
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Paper Discussion" data-listing-date-sort="1708588800000" data-listing-file-modified-sort="1709002501190" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="163">
-<div class="thumbnail">
-<p><a href="./posts/05-2024/RCSeminar2014-05.html" class="no-external"></a></p><a href="./posts/05-2024/RCSeminar2014-05.html" class="no-external">
-<p class="card-img-top"><img src="posts\05-2024\figures\Results.png" title="Results" class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/05-2024/RCSeminar2014-05.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/05-2024/RCSeminar2014-05.html" class="no-external">05 – The resource-consumer competition model</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/05-2024/RCSeminar2014-05.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Paper Discussion'); return false;">
-Paper Discussion
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/05-2024/RCSeminar2014-05.html" class="no-external">In this session, we discussed three papers that argued whether the predictions from the resource-ratio theory (equivalently, the resource-consumer theory, the <span class="math inline">\(R^*\)</span> theory)…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/05-2024/RCSeminar2014-05.html" class="no-external">
-<div class="listing-date">
-Feb 22, 2024
-</div>
-<div class="listing-author">
-Christopher Klausmeier; Liang Xu
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Lectures" data-listing-date-sort="1707984000000" data-listing-file-modified-sort="1709321460613" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="44" data-listing-word-count-sort="8796">
-<div class="thumbnail">
-<p><a href="./posts/04-2024/RCSeminar2014-04.html" class="no-external"></a></p><a href="./posts/04-2024/RCSeminar2014-04.html" class="no-external">
-<p class="card-img-top"><img src="posts\04-2024\figures\ZNGIs_ess_sub.png" title="ZNGIs" class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/04-2024/RCSeminar2014-04.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/04-2024/RCSeminar2014-04.html" class="no-external">04 – The resource-consumer competition model</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/04-2024/RCSeminar2014-04.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Lectures'); return false;">
-Lectures
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/04-2024/RCSeminar2014-04.html" class="no-external">In this session, we discussed about the resource-consumer model.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/04-2024/RCSeminar2014-04.html" class="no-external">
-<div class="listing-date">
-Feb 15, 2024
-</div>
-<div class="listing-author">
-Christopher Klausmeier; Liang Xu
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="Paper Discussion" data-listing-date-sort="1707379200000" data-listing-file-modified-sort="1708842902484" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1409">
-<div class="thumbnail">
-<p><a href="./posts/03-2024/RCSeminar2014-03.html" class="no-external"></a></p><a href="./posts/03-2024/RCSeminar2014-03.html" class="no-external">
-<p class="card-img-top"><img src="posts\03-2024\figures\Fig1.png" title="Coexistence of three species" class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/03-2024/RCSeminar2014-03.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/03-2024/RCSeminar2014-03.html" class="no-external">03 – The three-species problem</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/03-2024/RCSeminar2014-03.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Paper Discussion'); return false;">
-Paper Discussion
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/03-2024/RCSeminar2014-03.html" class="no-external">Paper discussion: The three-species problem: incorporating competitive asymmetry and intransitivity in modern coexistence theory by <strong>Ravi Ranjan</strong>, <strong>Thomas Koffel</strong>, <strong>Christopher…</strong></a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/03-2024/RCSeminar2014-03.html" class="no-external">
-<div class="listing-date">
-Feb 8, 2024
-</div>
-<div class="listing-author">
-Christopher Klausmeier; Liang Xu
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="Lectures" data-listing-date-sort="1706774400000" data-listing-file-modified-sort="1708842873173" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="26" data-listing-word-count-sort="5031">
-<div class="thumbnail">
-<p><a href="./posts/02-2024/RCSeminar2014.html" class="no-external"></a></p><a href="./posts/02-2024/RCSeminar2014.html" class="no-external">
-<p class="card-img-top"><img src="posts\02-2024\figures\rho_delta.png" title="niche overlap and fitness difference" class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/02-2024/RCSeminar2014.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/02-2024/RCSeminar2014.html" class="no-external">02 – Lotka-Volterra competition model and the modern coexistence theory</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/02-2024/RCSeminar2014.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Lectures'); return false;">
-Lectures
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/02-2024/RCSeminar2014.html" class="no-external">Two-species Lotka-Volterra competition model and the modern coexistence theory are discussed.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/02-2024/RCSeminar2014.html" class="no-external">
-<div class="listing-date">
-Feb 1, 2024
-</div>
-<div class="listing-author">
-Christopher Klausmeier; Liang Xu
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
