@@ -9,6 +9,14 @@ filters:
 
 In this session, we discussed three papers that argued whether the predictions from the resource-ratio theory (equivalently, the resource-consumer theory, the $R^*$ theory) have been adequately evidenced.
 
+# Materials
+
+The slides can be found [HERE](https://github.com/xl0418/ResourceCompetitionSeminarPosts-Docs/blob/main/05-2024/Docs/5%20-%20temperature%20and%20quota%20slides.pdf){target="_blank"}.
+
+The Mathematica notebook is [HERE](https://github.com/xl0418/ResourceCompetitionSeminarPosts-Docs/blob/main/05-2024/Docs/5%20-%20temperature%20and%20quota%20DONE.nb){target="_blank"}.
+
+# Sufficient evidence for the resource-ratio theory?
+
 
 ![Results](figures/Results.png "Results")
 

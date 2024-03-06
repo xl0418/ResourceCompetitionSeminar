@@ -1,0 +1,29 @@
+---
+title: "06 -- Variable environment and the storage (Droop) model"
+author: "Christopher Klausmeier; Liang Xu"
+date: "2024-02-29"
+categories: [Paper Discussion]
+filters:
+  - shinylive
+---
+
+In this session, we discussed how variable environment is considered in the resource competition theory and what the storage model (Droop model) is.
+
+# Materials
+
+The video record of the seminar can be found [HERE](https://www.youtube.com/watch?v=IQf16WzptkM){target="_blank"}.
+
+The slides can be found [HERE](https://github.com/xl0418/ResourceCompetitionSeminarPosts-Docs/blob/main/06-2024/Docs/6%20-%20variable%20environments%201.pptx){target="_blank"}.
+
+The Mathematica notebook is [HERE](https://github.com/xl0418/ResourceCompetitionSeminarPosts-Docs/blob/main/06-2024/Docs/6%20-%20variable%20environments%201.nb){target="_blank"}.
+
+# Too hectic to update :-(
+
+Just updated the materials. Will update the rest later! I promise!
+
+# References
+
+Bieg, Carling, and David Vasseur. "Interactions between Temperature and Nutrients Determine the Population Dynamics of Primary Producers." Ecology Letters 27, no. 1 (2024): e14363. https://doi.org/https://doi.org/10.1111/ele.14363. https://onlinelibrary.wiley.com/doi/abs/10.1111/ele.14363.
+
+Klausmeier, Christopher A., Elena Litchman, and Simon A. Levin. "Phytoplankton Growth and Stoichiometry under Multiple Nutrient Limitation." Limnology and Oceanography 49, no. 4part2 (2004): 1463-70. https://doi.org/https://doi.org/10.4319/lo.2004.49.4_part_2.1463. https://aslopubs.onlinelibrary.wiley.com/doi/abs/10.4319/lo.2004.49.4_part_2.1463.
+

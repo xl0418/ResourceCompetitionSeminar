@@ -169,7 +169,7 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   output$text <- renderText({
-    "Mechanis-Menten-Monod growth"
+    "Michaelis-Menten-Monod growth"
   })
   
   
