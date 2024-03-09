@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Christopher Klausmeier; Liang Xu">
+<meta name="dcterms.date" content="2024-03-07">
 
-<title>Resource Competition Seminar - Resource Competition Seminar 2024</title>
+<title>Resource Competition Seminar - 07 – Variable environment II and Chesson’s mordern coexistence theory</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +25,27 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content="../..">
+<script src="../../site_libs/quarto-contrib/shinylive-0.2.3/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../../site_libs/quarto-contrib/shinylive-0.2.3/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../../site_libs/quarto-contrib/shinylive-0.2.3/shinylive/shinylive.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,35 +73,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -128,7 +104,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -138,7 +114,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Resource Competition Seminar</span>
     </a>
   </div>
@@ -149,7 +125,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -173,14 +149,29 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page-left">
-      <h1 class="title">Resource Competition Seminar 2024</h1>
-                      </div>
+      <h1 class="title">07 – Variable environment II and Chesson’s mordern coexistence theory</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Lecture</div>
+              </div>
+                  </div>
   </div>
     
   
   <div class="quarto-title-meta column-page-left">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Christopher Klausmeier; Liang Xu </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 7, 2024</p>
+      </div>
+    </div>
     
       
     </div>
@@ -190,8 +181,21 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Lecture">Lecture <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Paper Discussion">Paper Discussion <span class="quarto-category-count">(2)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#materials" id="toc-materials" class="nav-link active" data-scroll-target="#materials">Materials</a></li>
+  <li><a href="#competitive-exclusion-principle" id="toc-competitive-exclusion-principle" class="nav-link" data-scroll-target="#competitive-exclusion-principle">Competitive exclusion principle</a></li>
+  <li><a href="#chessons-modern-coexistence-theory" id="toc-chessons-modern-coexistence-theory" class="nav-link" data-scroll-target="#chessons-modern-coexistence-theory">Chesson’s modern coexistence theory</a>
+  <ul class="collapse">
+  <li><a href="#relative-nonlinearity" id="toc-relative-nonlinearity" class="nav-link" data-scroll-target="#relative-nonlinearity">Relative nonlinearity</a></li>
+  <li><a href="#storage-effect" id="toc-storage-effect" class="nav-link" data-scroll-target="#storage-effect">Storage effect</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -199,215 +203,291 @@ window.Quarto = {
 
 
 
+<p>In this session, we discussed how the second part of variable environment and Chesson’s coexistence theory.</p>
+<section id="materials" class="level1">
+<h1>Materials</h1>
+<p>The video record of the seminar can be found <a href="https://youtu.be/V2hbx18OSUU?si=Wd0go-H55NvVA4Ln" target="_blank">HERE</a>.</p>
+<p>The slides can be found <a href="https://github.com/xl0418/ResourceCompetitionSeminarPosts-Docs/blob/main/07-2024/7%20-%20variable%20environments%202.pptx" target="_blank">HERE</a>.</p>
+<p>The Mathematica notebook is <a href="https://github.com/xl0418/ResourceCompetitionSeminarPosts-Docs/blob/main/07-2024/7%20-%20variable%20environments%202%20DONE.nb" target="_blank">HERE</a>.</p>
+</section>
+<section id="competitive-exclusion-principle" class="level1">
+<h1>Competitive exclusion principle</h1>
+<p>The first version of the competitive exclusion principle was worded as :</p>
+<p><strong>CEP v1.0</strong>: No more species can coexist than limiting resources.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/paradox1.png" title="Paradox 1" class="img-fluid figure-img"></p>
+<figcaption>CEP v1.0</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/paradox2.png" title="Paradox 2" class="img-fluid figure-img"></p>
+<figcaption>CEP v1.0</figcaption>
+</figure>
+</div>
+<p>However, this principle is often confronted with observation that many more species can coexist on a limited range of resource. Hutchinson proposed the famous paradox of plankton, questioning the prediction of competitive exclusion principle. In fact, one scenario is that many species can coexist before the ecosystem reaches the equilibrium. The competitive exclusion principle was then revised to:</p>
+<p><strong>CEP v2.0</strong>: No more species can coexist than limiting resources at equilibrium (Armstrong &amp; McGehee 1980 Am Nat)</p>
+<p>Even though, the ecosystem at equilibrium can still hold many species in a variable environment.</p>
+</section>
+<section id="chessons-modern-coexistence-theory" class="level1">
+<h1>Chesson’s modern coexistence theory</h1>
+<p>To make Hutchinson’s argument rigorous, Chesson proposed a modern coexistence theory (Chesson 1994, 2000). The theory is based on the idea that the environment is variable. Two ways of temporal variation can allow species coexistence</p>
+<ol type="1">
+<li>Relative nonlinearity</li>
+</ol>
+<p>Relative nonlinearity serves as a mechanism promoting species coexistence, arising from the diverse nonlinear growth responses of species to environmental conditions, notably resources. This variance in nonlinear responses induces shifts in the competitive hierarchy across different environmental contexts.</p>
+<ol start="2" type="1">
+<li>Storage effect</li>
+</ol>
+<p>Superior competitor depends on environmental factor that fluctuates over time.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/chesson.png" title="Peter Chesson" class="img-fluid figure-img"></p>
+<figcaption>Peter Chesson</figcaption>
+</figure>
+</div>
+<section id="relative-nonlinearity" class="level2">
+<h2 class="anchored" data-anchor-id="relative-nonlinearity">Relative nonlinearity</h2>
+<pre class="shinylive-r" data-engine="r"><code>#| standalone: true
+#| viewerHeight: 800
+#| viewerWidth: 900
+library(shiny)
+library(bslib)
+library(plotly)
+library(Matrix)
+
+growth_rate &lt;- function(mu_max,k, R){
+  return(mu_max * R / (R + k))
+}
 
 
+Sim_rc &lt;- function(tt, mu11, mu12, mu21, mu22,
+                   k11,k12,k21,k22,
+                   v11, v12, v21, v22,
+                   r1in, r2in,
+                   N10, N20, R10, R20,
+                   m,
+                   mode) {
+  N1 &lt;- c(N10)
+  N2 &lt;- c(N20)
+  R1 &lt;- c(R10)
+  R2 &lt;- c(R20)
+  for(ti in 1:tt){
+    temp_N1 &lt;- N1[ti]
+    temp_N2 &lt;- N2[ti]
+    temp_R1 &lt;- R1[ti]
+    temp_R2 &lt;- R2[ti]
+    for(tii in 1:100){
+      if(mode == "ess"){
+        mu1 &lt;- min(growth_rate(mu11, k11, temp_R1), growth_rate(mu12, k12, temp_R2))
+        mu2 &lt;- min(growth_rate(mu21, k21, temp_R1), growth_rate(mu22, k22, temp_R2))
+        c11 &lt;- min(growth_rate(v11, k11, temp_R1), growth_rate(v12, k12, temp_R2))
+        c12 &lt;- min(growth_rate(v11, k11, temp_R1), growth_rate(v12, k12, temp_R2))
+        c21 &lt;- min(growth_rate(v21, k21, temp_R1), growth_rate(v22, k22, temp_R2))
+        c22 &lt;- min(growth_rate(v21, k21, temp_R1), growth_rate(v22, k22, temp_R2))
+        
+      } else {
+        mu1 &lt;- growth_rate(mu11, k11, temp_R1) + growth_rate(mu12, k12, temp_R2)
+        mu2 &lt;- growth_rate(mu21, k21, temp_R1) + growth_rate(mu22, k22, temp_R2)
+        c11 &lt;- v11 * temp_R1
+        c12 &lt;- v12 * temp_R2
+        c21 &lt;- v21 * temp_R1
+        c22 &lt;- v22 * temp_R2
+      }
+      
+      dN1 &lt;- (mu1 - m) * temp_N1 / 100
+      dN2 &lt;- (mu2 - m) * temp_N2 / 100
+      dR1 &lt;- ((r1in - temp_R1) - c11 * temp_N1 - c21 * temp_N2) / 100
+      dR2 &lt;- ((r2in - temp_R2) - c12 * temp_N1 - c22 * temp_N2) / 100
+      
+      temp_N1 &lt;- max(temp_N1 + dN1, 0)
+      temp_N2 &lt;- max(temp_N2 + dN2, 0)
+      temp_R1 &lt;- max(temp_R1 + dR1, 0)
+      temp_R2 &lt;- max(temp_R2 + dR2, 0)
+      
+    }
+    
+    N1 &lt;- c(N1, temp_N1)
+    N2 &lt;- c(N2, temp_N2)
+    
+    R1 &lt;- c(R1, temp_R1)
+    R2 &lt;- c(R2, temp_R2)
+  }
+  return(data.frame(N1 = N1, N2 = N2, R1 = R1, R2 = R2, cc = 1:(tt+1)))
+  
+}
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Lecture" data-listing-date-sort="1709798400000" data-listing-file-modified-sort="1709965928615" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2215">
-<div class="thumbnail">
-<p><a href="./posts/07-2024/RCSeminar2024-07.html" class="no-external"></a></p><a href="./posts/07-2024/RCSeminar2024-07.html" class="no-external">
-<p class="card-img-top"><img src="posts\07-2024\figures\paradox1.png" title="Paradox 1" class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/07-2024/RCSeminar2024-07.html" class="no-external"></a></p>
+# Define UI for app that draws a histogram ----
+# Define UI for app that draws a histogram ----
+ui &lt;- fluidPage(
+  headerPanel(''),
+  
+  fluidRow(
+    column(12, 
+           textOutput("text"),
+           tags$head(tags$style("#text{color: black;
+                                 font-size: 30px;
+                                 font-style: italic;
+                                 }"
+           )
+           ),
+           plotlyOutput("plot1", width=700, height=260),
+           plotlyOutput("plot2", width=700, height=260)
+    )
+  ), 
+  
+  fluidRow(
+    column(4, 
+           div(style="height: 80px;",sliderInput('mu1max', HTML("&amp;mu;&lt;sub&gt;1,max&lt;/sub&gt;"), 1.4, min = 0.1, max = 2)),
+           div(style="height: 80px;",sliderInput('mu2max', HTML("&amp;mu;&lt;sub&gt;2,max&lt;/sub&gt;"), 0.8, min = 0.1, max = 2))
+    ),
+    column(4,
+           div(style="height: 80px;", sliderInput('k1', HTML("K&lt;sub&gt;1&lt;/sub&gt;"), 2.3, min = 0.1, max = 3)),
+           div(style="height: 80px;",sliderInput('k2', HTML("K&lt;sub&gt;2&lt;/sub&gt;"), 0.65, min = 0.1, max = 3))
+    ),
+    column(4,
+           div(style="height: 80px;", sliderInput('m', "m", 0.4, min = 0.01, max = 1)),
+    )
+  )
+  
+  
+)
+
+server &lt;- function(input, output, session) {
+  output$text &lt;- renderText({
+    "Relative nonlinearity"
+  })
+  
+  
+  
+  
+  # sim lv model
+  sim_result &lt;- reactive({
+    Sim_rc(100, input$mu1max, 0, input$mu2max, 0,
+           input$k1,0, input$k2, 0,
+           3 * input$mu1max,  0, 3 * input$mu2max,0,
+           10, 10, 0.1, 0.1, 1, 1, input$m,
+           "sub")
+  })
+  # browser()
+  
+  output$plot1 &lt;- renderPlotly({
+      R &lt;- seq(0, 10, 0.01)
+      
+      mu1 &lt;-reactive({
+        growth_rate(input$mu1max, input$k1, R)
+      })
+      
+      
+      mu2 &lt;-reactive({
+        growth_rate(input$mu2max, input$k2, R)
+      })
+      
+      gr &lt;- data.frame(re = R, mu1 = mu1(), mu2 = mu2())
+      # browser()
+      p &lt;- plot_ly(data = gr) %&gt;%
+        add_trace(x = ~re, y = ~mu1, type = 'scatter', mode = 'lines', name = 'Species 1', line = list(color = '#86C166', width = 4)) %&gt;%
+        add_trace(x = ~re, y = ~mu2, type = 'scatter', mode = 'lines', name = 'Species 2', line = list(color = '#42602D', width = 4))
+        
+      p &lt;- p %&gt;%
+        add_segments(y=input$m, yend = input$m, x = 0, xend=10, type = 'scatter', mode = 'lines', name = "m", line = list(color = '#D0104C', width = 2))
+   
+      # xlim
+      p &lt;- p %&gt;% layout(xaxis = list(range = c(0, 4)))
+      p &lt;- p %&gt;% layout(xaxis = list(title = "Time"),yaxis = list(title = "Growth rate"))
+      
+      
+      
+      p
+  })
+  
+  output$plot2 &lt;- renderPlotly({
+    
+    # browser()
+    p &lt;- plot_ly(data = sim_result()) %&gt;%
+      add_trace(x = ~cc, y = ~N1, type = 'scatter', mode = 'lines', name = 'Species 1', line = list(color = '#86C166', width = 4)) %&gt;%
+      add_trace(x = ~cc, y = ~N2, type = 'scatter', mode = 'lines', name = 'Species 2', line = list(color = '#42602D', width = 4))
+    
+
+    # xlim
+    # p &lt;- p %&gt;% layout(xaxis = list(range = c(0, 50)),
+    #                   yaxis = list(range = c(0, 2)))
+    # xlabel
+    p &lt;- p %&gt;% layout(xaxis = list(title = "Time"),yaxis = list(title = "Density"))
+    
+    
+    
+    
+    p
+  })
+
+}
+# Create Shiny app ----
+shinyApp(ui = ui, server = server)</code></pre>
+<p><strong>Trade-off</strong>: In this scenario, one species exhibits a higher <span class="math inline">\(\mu_{max}\)</span> but a greater half-saturation rate, resulting in a growth advantage at high resource concentrations but a disadvantage at low resource levels. Conversely, the other species possesses a lower <span class="math inline">\(\mu_{max}\)</span> and half-saturation rate, allowing it to grow more rapidly at low resource concentrations but with a larger <span class="math inline">\(R^{\ast}\)</span>. This dynamic reflects the trade-off between growth at low versus high resource availability (<span class="math inline">\(R^{\ast}\)</span> versus <span class="math inline">\(\mu_{max}\)</span>), commonly referred to as the gleaner-opportunist trade-off.</p>
+<p>Mathematically, this trade-off can be represented by the following equations:</p>
+<p><span class="math display">\[
+\frac{d^2 \mu_2}{d R^2}&lt; \frac{d^2 \mu_1}{d R^2}&lt;0
+\]</span></p>
+<p>Neither species likes environmental variation, but species 2 likes it less as its <span class="math inline">\(\frac{d^2 \mu_2}{d R^2}\)</span> is more negative, which means it suffers from the change of resource more.</p>
+<p>Given the mean of the growth rate being expressed in Taylor expansion form:</p>
+<p><span class="math display">\[
+\overline{\mu(R)} \approx \mu(\bar{R})+\frac{1}{2} Var(R)\frac{d^2\mu}{dR^2}
+\]</span></p>
+<p>we can use the ZNGI analysis to study the coexistence of two species. The mean of ZNGI in a variable environment is given by:</p>
+<p><span class="math display">\[
+\overline{\frac{1}{N}\frac{dN}{dt}} = \overline{\mu(R) - m} = \overline{\mu(R)} - m=0
+\]</span></p>
+<p>given <span class="math inline">\(m\)</span> is constant.</p>
+<p>Substituting the Taylor expansion of <span class="math inline">\(\overline{\mu(R)}\)</span> into the equation, we have:</p>
+<p><span class="math display">\[
+\mu(\bar{R})+\frac{1}{2} Var(R)\frac{d^2\mu}{dR^2} - m = 0.
+\]</span></p>
+<p>For simplification, we assume a linear growth function <span class="math inline">\(\mu(\bar{R})=\mu \bar{R}\)</span>, we have the ZNGI in a coordinate of <span class="math inline">\(\mu(\bar{R})\)</span> and <span class="math inline">\(Var(R)\)</span>:</p>
+<p><span class="math display">\[
+Var(R) = \frac{2}{\frac{d^2\mu}{dR^2}}(m - \mu \bar{R})
+\]</span></p>
+<p>The ZNGI is a straight line in the coordinate of <span class="math inline">\(\mu(\bar{R})\)</span> and <span class="math inline">\(Var(R)\)</span>, with the slope being <span class="math inline">\(-\frac{2 \mu}{\frac{d^2\mu}{dR^2}}\)</span> and the intercept being <span class="math inline">\(\frac{2 m}{\frac{d^2\mu}{dR^2}}\)</span>.</p>
+<p>From the ZNGI analysis, we know that only when two ZNGIs cross in the first quadrant, the coexistence of two species is possible. Thus, the coexistence of two species requires that one should have a larger intercept at <span class="math inline">\(\bar{R}\)</span> axis and a larger slope (Species 1) while the other should have a smaller intercept and a smaller slope (Species 2) (see the figure below). This is consistent with the trade-off between <span class="math inline">\(\mu_{max}\)</span> and <span class="math inline">\(R^{\ast}\)</span>, i.e.,</p>
+<p><span class="math display">\[
+\begin{align}
+\frac{d^2 \mu_2}{d R^2}&lt; \frac{d^2 \mu_1}{d R^2}&lt;0 \\
+\mu_{max,1} &gt; \mu_{max,2}
+\end{align}
+\]</span></p>
+<p>Thus, the trade-off can be viewed that opportunist must “consume” var(R) more than gleaner for stable coexistence (Yamamichi &amp; Letten 2022).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/var.png" title="Variance as a resource" class="img-fluid figure-img"></p>
+<figcaption>Variance as a resource</figcaption>
+</figure>
 </div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/07-2024/RCSeminar2024-07.html" class="no-external">07 – Variable environment II and Chesson’s mordern coexistence theory</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/07-2024/RCSeminar2024-07.html" class="no-external"></a>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/yale.png" title="Yamamichi &amp; Letten 2022" class="img-fluid figure-img"></p>
+<figcaption>Yamamichi &amp; Letten 2022</figcaption>
+</figure>
 </div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Lecture'); return false;">
-Lecture
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/07-2024/RCSeminar2024-07.html" class="no-external">In this session, we discussed how the second part of variable environment and Chesson’s coexistence theory.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/07-2024/RCSeminar2024-07.html" class="no-external">
-<div class="listing-date">
-Mar 7, 2024
-</div>
-<div class="listing-author">
-Christopher Klausmeier; Liang Xu
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Lecture" data-listing-date-sort="1709193600000" data-listing-file-modified-sort="1709956045957" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2672">
-<div class="thumbnail">
-<p><a href="./posts/06-2024/RCSeminar2024-06.html" class="no-external"></a></p><a href="./posts/06-2024/RCSeminar2024-06.html" class="no-external">
-<p class="card-img-top"><img src="posts\06-2024\figures\DroopModel.png" title="Droop" class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/06-2024/RCSeminar2024-06.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/06-2024/RCSeminar2024-06.html" class="no-external">06 – Variable environment I and the Droop model with periodic forcing</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/06-2024/RCSeminar2024-06.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Lecture'); return false;">
-Lecture
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/06-2024/RCSeminar2024-06.html" class="no-external">In this session, we discussed how variable environment is considered in the resource competition theory and what the storage model (Droop model) is.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/06-2024/RCSeminar2024-06.html" class="no-external">
-<div class="listing-date">
-Feb 29, 2024
-</div>
-<div class="listing-author">
-Christopher Klausmeier; Liang Xu
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Paper Discussion" data-listing-date-sort="1708588800000" data-listing-file-modified-sort="1709002501190" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="163">
-<div class="thumbnail">
-<p><a href="./posts/05-2024/RCSeminar2024-05.html" class="no-external"></a></p><a href="./posts/05-2024/RCSeminar2024-05.html" class="no-external">
-<p class="card-img-top"><img src="posts\05-2024\figures\Results.png" title="Results" class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/05-2024/RCSeminar2024-05.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/05-2024/RCSeminar2024-05.html" class="no-external">05 – The resource-consumer competition model</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/05-2024/RCSeminar2024-05.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Paper Discussion'); return false;">
-Paper Discussion
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/05-2024/RCSeminar2024-05.html" class="no-external">In this session, we discussed three papers that argued whether the predictions from the resource-ratio theory (equivalently, the resource-consumer theory, the <span class="math inline">\(R^*\)</span> theory)…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/05-2024/RCSeminar2024-05.html" class="no-external">
-<div class="listing-date">
-Feb 22, 2024
-</div>
-<div class="listing-author">
-Christopher Klausmeier; Liang Xu
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="Lecture" data-listing-date-sort="1707984000000" data-listing-file-modified-sort="1709960336995" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="45" data-listing-word-count-sort="8821">
-<div class="thumbnail">
-<p><a href="./posts/04-2024/RCSeminar2024-04.html" class="no-external"></a></p><a href="./posts/04-2024/RCSeminar2024-04.html" class="no-external">
-<p class="card-img-top"><img src="posts\04-2024\figures\ZNGIs_ess_sub.png" title="ZNGIs" class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/04-2024/RCSeminar2024-04.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/04-2024/RCSeminar2024-04.html" class="no-external">04 – The resource-consumer competition model</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/04-2024/RCSeminar2024-04.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Lecture'); return false;">
-Lecture
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/04-2024/RCSeminar2024-04.html" class="no-external">In this session, we discussed about the resource-consumer model.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/04-2024/RCSeminar2024-04.html" class="no-external">
-<div class="listing-date">
-Feb 15, 2024
-</div>
-<div class="listing-author">
-Christopher Klausmeier; Liang Xu
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="Paper Discussion" data-listing-date-sort="1707379200000" data-listing-file-modified-sort="1708842902484" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1409">
-<div class="thumbnail">
-<p><a href="./posts/03-2024/RCSeminar2024-03.html" class="no-external"></a></p><a href="./posts/03-2024/RCSeminar2024-03.html" class="no-external">
-<p class="card-img-top"><img src="posts\03-2024\figures\Fig1.png" title="Coexistence of three species" class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/03-2024/RCSeminar2024-03.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/03-2024/RCSeminar2024-03.html" class="no-external">03 – The three-species problem</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/03-2024/RCSeminar2024-03.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Paper Discussion'); return false;">
-Paper Discussion
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/03-2024/RCSeminar2024-03.html" class="no-external">Paper discussion: The three-species problem: incorporating competitive asymmetry and intransitivity in modern coexistence theory by <strong>Ravi Ranjan</strong>, <strong>Thomas Koffel</strong>, <strong>Christopher…</strong></a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/03-2024/RCSeminar2024-03.html" class="no-external">
-<div class="listing-date">
-Feb 8, 2024
-</div>
-<div class="listing-author">
-Christopher Klausmeier; Liang Xu
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="Lecture" data-listing-date-sort="1706774400000" data-listing-file-modified-sort="1709959584395" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="26" data-listing-word-count-sort="5031">
-<div class="thumbnail">
-<p><a href="./posts/02-2024/RCSeminar2024-02.html" class="no-external"></a></p><a href="./posts/02-2024/RCSeminar2024-02.html" class="no-external">
-<p class="card-img-top"><img src="posts\02-2024\figures\rho_delta.png" title="niche overlap and fitness difference" class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/02-2024/RCSeminar2024-02.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/02-2024/RCSeminar2024-02.html" class="no-external">02 – Lotka-Volterra competition model and the modern coexistence theory</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/02-2024/RCSeminar2024-02.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Lecture'); return false;">
-Lecture
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/02-2024/RCSeminar2024-02.html" class="no-external">Two-species Lotka-Volterra competition model and the modern coexistence theory are discussed.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/02-2024/RCSeminar2024-02.html" class="no-external">
-<div class="listing-date">
-Feb 1, 2024
-</div>
-<div class="listing-author">
-Christopher Klausmeier; Liang Xu
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</section>
+<section id="storage-effect" class="level2">
+<h2 class="anchored" data-anchor-id="storage-effect">Storage effect</h2>
+<p>UNDER CONSTRUCTION!</p>
+</section>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<p>Yamamichi, Masato, and Andrew D. Letten. “Extending the Gleaner–Opportunist Trade-Off.” Journal of Animal Ecology 91, no. 11 (2022): 2163-70. https://doi.org/https://doi.org/10.1111/1365-2656.13813. https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/1365-2656.13813.</p>
+<p>Chesson, Peter. “Mechanisms of Maintenance of Species Diversity.” Annual Review of Ecology and Systematics 31, no. 1 (2000): 343-66. https://doi.org/10.1146/annurev.ecolsys.31.1.343. https://www.annualreviews.org/doi/abs/10.1146/annurev.ecolsys.31.1.343.</p>
+<p>Chesson, P. “Multispecies Competition in Variable Environments.” Theoretical Population Biology 45, no. 3 (1994/06/01/ 1994): 227-76. https://doi.org/https://doi.org/10.1006/tpbi.1994.1013. https://www.sciencedirect.com/science/article/pii/S0040580984710136.</p>
+<p>Hutchinson, G. E. “The Paradox of the Plankton.” The American Naturalist 95, no. 882 (1961): 137-45. http://www.jstor.org/stable/2458386.</p>
+<p>Armstrong, Robert A., and Richard McGehee. “Competitive Exclusion.” The American Naturalist 115, no. 2 (1980): 151-70. http://www.jstor.org/stable/2460592.</p>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
