@@ -842,7 +842,7 @@ Sim_rc &lt;- function(tt, mu1, mu2,
       mu2_g &lt;- growth_rate(mu2, temp, temp_opt2, sigma)
       dN1 &lt;- (mu1_g * temp_R1 - m) * temp_N1 / 100
       dN2 &lt;- (mu2_g * temp_R1 - m) * temp_N2 / 100
-      dR1 &lt;- ((r1in - temp_R1) - v1 * temp_N1 - v2 * temp_N2) / 100
+      dR1 &lt;- ((r1in - temp_R1) - v1 * mu1_g * temp_N1 * temp_R1 - v2 *mu2_g  * temp_N2 * temp_R1) / 100
 
       temp_N1 &lt;- max(temp_N1 + dN1, 0)
       temp_N2 &lt;- max(temp_N2 + dN2, 0)
