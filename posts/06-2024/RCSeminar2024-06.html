@@ -373,15 +373,19 @@ shinyApp(ui = ui, server = server)</code></pre>
 <h1>The Droop model</h1>
 <p>The Droop model considers a hirarchical structure of the growth of phytoplankton. Phytoplankton cells take up resources (R) from the environment and convert them into biomass. The conversion rate is regulated by the intracellular nutrient concentration, called cell quota (<span class="math inline">\(Q\)</span>). The growth of cells is then dependent on the cell quota dynamics. The model is defined as</p>
 <p><span class="math display">\[
+\begin{align}
 \frac{dN}{dt} = \mu_{\infty} \left(1 - \frac{Q_{min}}{Q}\right) N - mN\\
 \frac{dQ}{dt} = v_{max} \frac{R}{R + K} - \mu_{\infty} \left(1 - \frac{Q_{min}}{Q}\right) Q\\
 \frac{dR}{dt} = a(R_{in} - R) - v_{max} \frac{R}{R + K}N
+\end{align}
 \]</span></p>
 <p>where <span class="math inline">\(\mu_{\infty}\)</span> is the maximum growth rate, <span class="math inline">\(Q_{min}\)</span> is the minimum cell quota, <span class="math inline">\(m\)</span> is the mortality rate, <span class="math inline">\(v_{max}\)</span> is the maximum uptake rate, <span class="math inline">\(K\)</span> is the half-saturation constant, <span class="math inline">\(R_{in}\)</span> is the resource input, and <span class="math inline">\(a\)</span> is the dilution rate of the resource.</p>
 <p>To consider the periodic forcing, we can add a periodic temperature term to the maximum growth rate <span class="math inline">\(\mu_{\infty}\)</span>:</p>
 <p><span class="math display">\[
+\begin{align}
 \mu_{\infty} = \mu_0 e^{\mu_1 T}\\
 T = T_{mean} + T_{amp} \sin\left(\frac{2\pi t}{\tau}\right)
+\end{align}
 \]</span></p>
 <p>where <span class="math inline">\(\mu_0\)</span> is the maximum growth rate at the mean temperature, <span class="math inline">\(\mu_1\)</span> is the temperature sensitivity, and <span class="math inline">\(T\)</span> is the temperature. The temperature is modeled as a sine function with a mean temperature <span class="math inline">\(T_{mean}\)</span>, an amplitude <span class="math inline">\(T_{amp}\)</span>, and a period <span class="math inline">\(\tau\)</span>.</p>
 <p>The behavior of the model is shown in the following figure.</p>
