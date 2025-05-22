@@ -2,7 +2,7 @@
 title: "04 -- The resource-consumer competition model"
 author: "Christopher Klausmeier; Liang Xu"
 date: "2024-02-15"
-categories: [Lectures]
+categories: [Lecture]
 filters:
   - shinylive
 ---
@@ -209,7 +209,7 @@ server <- function(input, output, session) {
       # xlim
       # p <- p %>% layout(xaxis = list(range = c(0, 2)),
       #                   yaxis = list(range = c(0, 2)))
-      
+      p <- p %>% layout(xaxis = list(title = "R"),yaxis = list(title = "Growth rate"))
       
       
       
@@ -228,7 +228,7 @@ server <- function(input, output, session) {
     # p <- p %>% layout(xaxis = list(range = c(0, 2)),
     #                   yaxis = list(range = c(0, 2)))
     
-    
+    p <- p %>% layout(xaxis = list(title = "Time"),yaxis = list(title = "Density"))
     
     
     p

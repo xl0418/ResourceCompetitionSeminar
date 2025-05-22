@@ -1,5 +1,5 @@
 ---
-title: "06 -- Variable environment and the Droop model with periodic forcing"
+title: "06 -- Variable environment I and the Droop model with periodic forcing"
 author: "Christopher Klausmeier; Liang Xu"
 date: "2024-02-29"
 categories: [Lecture]
@@ -187,7 +187,6 @@ server <- function(input, output, session) {
 shinyApp(ui = ui, server = server)
 ```
 
-
 So, $\bar{r}$ is the appropriate definition of growth / fitness in variable environments for unstructured populations. This is true for any kinds of environmental variation (periodic, random). It is also useful for invasion analysis (coexistence criteria).
 
 However, things become more complicated for structured populations.
@@ -200,12 +199,14 @@ Intensive structure: let intensive variable reach attractor, then calculate grow
 
 # The Droop model
 
-The Droop model considers a hirarchical structure of the growth of phytoplankton. Phytoplankton cells take up resources (R) from the environment and convert them into biomass. The conversion rate is regulated by the intracellular nutrient concentration, called cell quota ($Q$). The growth of cells is then dependent on the cell quota dynamics. The model is defined as 
+The Droop model considers a hirarchical structure of the growth of phytoplankton. Phytoplankton cells take up resources (R) from the environment and convert them into biomass. The conversion rate is regulated by the intracellular nutrient concentration, called cell quota ($Q$). The growth of cells is then dependent on the cell quota dynamics. The model is defined as
 
 $$
+\begin{align}
 \frac{dN}{dt} = \mu_{\infty} \left(1 - \frac{Q_{min}}{Q}\right) N - mN\\
 \frac{dQ}{dt} = v_{max} \frac{R}{R + K} - \mu_{\infty} \left(1 - \frac{Q_{min}}{Q}\right) Q\\
 \frac{dR}{dt} = a(R_{in} - R) - v_{max} \frac{R}{R + K}N
+\end{align}
 $$
 
 where $\mu_{\infty}$ is the maximum growth rate, $Q_{min}$ is the minimum cell quota, $m$ is the mortality rate, $v_{max}$ is the maximum uptake rate, $K$ is the half-saturation constant, $R_{in}$ is the resource input, and $a$ is the dilution rate of the resource.
@@ -213,12 +214,13 @@ where $\mu_{\infty}$ is the maximum growth rate, $Q_{min}$ is the minimum cell q
 To consider the periodic forcing, we can add a periodic temperature term to the maximum growth rate $\mu_{\infty}$:
 
 $$
+\begin{align}
 \mu_{\infty} = \mu_0 e^{\mu_1 T}\\
 T = T_{mean} + T_{amp} \sin\left(\frac{2\pi t}{\tau}\right)
+\end{align}
 $$
 
 where $\mu_0$ is the maximum growth rate at the mean temperature, $\mu_1$ is the temperature sensitivity, and $T$ is the temperature. The temperature is modeled as a sine function with a mean temperature $T_{mean}$, an amplitude $T_{amp}$, and a period $\tau$.
-
 
 The behavior of the model is shown in the following figure.
 
@@ -343,7 +345,6 @@ server <- function(input, output, session) {
 shinyApp(ui = ui, server = server)
 ```
 
-
 # Nonlinear averaging (Jensen's inequality)
 
 The nonlinear averaging is a method to calculate the average of a nonlinear function. For example, the average of the growth rate in a variable environment is defined as:
@@ -368,9 +369,6 @@ $$
 \bar{r}(x) = r(\bar{x}) + \frac{1}{2} \left(\frac{d^2r}{dx^2}\right) Var(x)
 $$
 
-
-
 # References
 
 Droop, M.R. (1973), SOME THOUGHTS ON NUTRIENT LIMITATION IN ALGAE†. Journal of Phycology, 9: 264-272. https://doi.org/10.1111/j.1529-8817.1973.tb04092.x
-
